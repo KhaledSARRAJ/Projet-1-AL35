@@ -21,11 +21,7 @@ public class Projet01Application implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("************");
-		utilisateurRepository.save(new Utilisateur("David"));
-		utilisateurRepository.save(new Utilisateur("Melany"));
-		utilisateurRepository.save(new Utilisateur("Khaled"));
-		utilisateurRepository.save(new Utilisateur("Mehenni"));
-		utilisateurRepository.save(new Utilisateur("Steave"));
+
 		
 	}
 

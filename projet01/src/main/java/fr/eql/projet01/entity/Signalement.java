@@ -1,6 +1,7 @@
 package fr.eql.projet01.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -46,4 +47,10 @@ public class Signalement implements Serializable {
 	@JoinColumn(referencedColumnName = "id")
 	private Annonce annonce;
 	
+	public void addUtilisateur(Utilisateur u) {
+		if (listUtilisateurSignalement == null) {
+			listUtilisateurSignalement = new ArrayList<Utilisateur>();
+		}
+		this.listUtilisateurSignalement.add(u);
+	}
 }

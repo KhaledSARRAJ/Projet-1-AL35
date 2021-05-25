@@ -1,5 +1,6 @@
 package fr.eql.projet01.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -38,4 +39,17 @@ public class Theme {
 	inverseJoinColumns = {@JoinColumn(name = "annonce_id")})
 	private List<Annonce> listAnnonceTheme;
 	
+	public void addPublication(Publication p) {
+		if (listPublicationTheme == null) {
+			listPublicationTheme = new ArrayList<Publication>();
+		}
+		this.listPublicationTheme.add(p);
+	}
+	
+	public void addAnnonce(Annonce a) {
+		if (listAnnonceTheme == null) {
+			listAnnonceTheme = new ArrayList<Annonce>();
+		}
+		this.listAnnonceTheme.add(a);
+	}
 }

@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +28,7 @@ public class Annonce implements Serializable{
 	private String titre;
 	private String texte;
 	private Double prix;
+	@Temporal(TemporalType.DATE)
 	private Date dateParution;
 	
 	@OneToMany

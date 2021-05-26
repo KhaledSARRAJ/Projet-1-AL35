@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.ManyToAny;
 
@@ -29,6 +31,7 @@ public class Publication implements Serializable{
 	private Long id;
 	private String titre;
 	private String texte;
+	@Temporal(TemporalType.DATE)
 	private Date dateDebut;
 	
 	@OneToMany

@@ -3,6 +3,7 @@ package fr.eql.projet01.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,13 +31,15 @@ public class Theme {
 	private String titre;
 	private String description;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name = "publication_theme",
 	joinColumns = {@JoinColumn(name = "theme_id")},
 	inverseJoinColumns = {@JoinColumn(name = "publication_id")})
 	private List<Publication> listPublicationTheme;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name = "annonce_theme",
 	joinColumns = {@JoinColumn(name = "theme_id")},
 	inverseJoinColumns = {@JoinColumn(name = "annonce_id")})

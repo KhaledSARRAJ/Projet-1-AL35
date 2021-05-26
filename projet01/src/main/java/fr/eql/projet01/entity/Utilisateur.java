@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,9 +15,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-import lombok.Data;
-import lombok.*;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter @Setter @NoArgsConstructor 
@@ -28,6 +34,7 @@ public class Utilisateur implements Serializable{
 	private Long id;
 	private String nom;
 	private String prenom;
+	@Temporal(TemporalType.DATE) // 2021-05-25 <-- en bdd
 	private Date dateNais;
 	
 	@ManyToOne
@@ -36,7 +43,7 @@ public class Utilisateur implements Serializable{
 	
 	@Column(unique = true)
 	private String mail;
-	private Long telephone;
+	private String telephone;
 	private String rue;
 	
 	@ManyToOne
@@ -46,7 +53,9 @@ public class Utilisateur implements Serializable{
 	@Column(unique = true)
 	private String profile;
 	private String passeWord;
+	@Temporal(TemporalType.DATE)
 	private Date dateInscription;
+	@Temporal(TemporalType.DATE)
 	private Date dateResiliation;
 		
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="utilisateur")
@@ -59,10 +68,12 @@ public class Utilisateur implements Serializable{
 	private List<Signalement> signalement;
 	
 	@OneToMany(mappedBy="follower")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Abonnement> Listefollower;
 	
 	@OneToMany(mappedBy="following")
-	private List<Abonnement> Listefollowing;
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<Abonnement> Listefollowing; 
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")

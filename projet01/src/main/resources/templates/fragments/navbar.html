@@ -1,6 +1,8 @@
 
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security"   >
+
 <head>
     <meta charset="UTF-8">
 
@@ -28,14 +30,22 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/home}">Home
+            <ul class="navbar-nav ml-auto" >
+                <li class="nav-item active" sec:authorize="!isAuthenticated()">
+                    <a class="nav-link" th:href="@{/home}">Accueil
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Notifications</a>
+                <li class="nav-item active" sec:authorize="isAuthenticated()">
+                    <a class="nav-link" href="/espaceConnect" >Accueil
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                	<a class="nav-link" href="/espaceConnect" >Connexion</a>
+                </li>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                	<a class="nav-link" href="/session-end">Deconnexion</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/s}">Mes publications</a>

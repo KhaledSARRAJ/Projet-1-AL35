@@ -4,8 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.annotation.Generated;
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,10 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.ManyToAny;
-
-import lombok.Data;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter @Setter @NoArgsConstructor 
@@ -34,8 +32,7 @@ public class Publication implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dateDebut;
 	
-	@OneToMany
-	@JoinColumn(referencedColumnName = "id")
+	@OneToMany(mappedBy = "publicationSupport", cascade = CascadeType.ALL)
 	private List<Support> support;
 		
 	@ManyToMany(mappedBy = "listPublicationTheme")
@@ -48,5 +45,11 @@ public class Publication implements Serializable{
 	@OneToMany
 	@JoinColumn(referencedColumnName = "id")
 	private List<Signalement> signalement;
+
+	public Publication(String titre, String texte) {
+		super();
+		this.titre = titre;
+		this.texte = texte;
+	}
 	
 }

@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -40,7 +41,7 @@ public class Utilisateur implements Serializable{
 	private String nom;
 	private String prenom;
 	@Temporal(TemporalType.DATE) // 2021-05-25 <-- en bdd
-	private Date dateNais;
+	private Date dateNais; 
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import fr.eql.projet01.dao.UtilisateurRepository;
 import fr.eql.projet01.entity.Utilisateur;
 
+
 @Service 
 @Transactional
 public class UtilisateurServiceImpl implements UtilisateurService {
@@ -19,5 +20,10 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	@Override
 	public Utilisateur rechercherUtilisateurParProfil(String profil) {
 		return utilisateurRepository.findByProfil(profil);
+	}
+		@Override
+	public Utilisateur findInfoUtilisateur(long id) {
+		return utilisateurRepository.findById(id).orElse(null);
+
 	}
 }

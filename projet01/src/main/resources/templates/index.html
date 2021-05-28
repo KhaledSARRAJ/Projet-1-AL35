@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>index</title>
+       <meta http-equiv="refresh" content= "0;./home"/>
+       <div th:replace="fragments/header :: header-css"/> 
+   </head>
+   <body>
+	<div th:replace="fragments/header :: header"/>
+      <h1>Réseau social</h1>
+ 	<a href= "./home">vers home</a> 
+       
+   <div th:replace="fragments/footer :: footer"/></body>
+    
+</html>

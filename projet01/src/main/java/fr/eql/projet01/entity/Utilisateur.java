@@ -24,7 +24,12 @@ import org.hibernate.annotations.LazyCollectionOption;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
+@NamedQueries({
+	@NamedQuery(name="Utilisateur.findByProfil", query="SELECT u FROM Utilisateur AS u WHERE u.profile=:profil"),
+	@NamedQuery(name="Utilisateur.findAll", query="SELECT u FROM Utilisateur u")})
 @Entity
 @Getter @Setter @NoArgsConstructor 
 public class Utilisateur implements Serializable{

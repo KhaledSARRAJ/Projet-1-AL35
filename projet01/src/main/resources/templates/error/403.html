@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Projet 1</title>
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,19 +18,24 @@ body {
 	padding-top: 100px;
 }
 </style>
+
 </head>
 <body>
 
 <nav th:insert="fragments/navbar :: nav_fragment"></nav>
+
 <div class="container">
 
     <div class="starter-template">
-            <h1><b><span th:utext="${message}"></span></b></h1>
-        <h1>RÃ©seau social dans le domaine de lâ€™art.... Ajouter un Carousel pk pas ?  </h1>
-        <h2>3. Avoir <a th:href="@{/about}">Page principal (about/rÃ©glement/Qui somme nous)</a></h2>
+        <h1>403 - L'accÃ¨s est refusÃ©</h1>
+        <div th:inline="text">Bonjour '[[${#httpServletRequest.remoteUser}]]', 
+                vous n'Ãªtes pas autorisÃ© Ã  accÃ©der Ã  cette page.</div>
     </div>
 
 </div>
+<!-- /.container -->
+
 <footer th:insert="fragments/footer :: footer_fragment"></footer>
+
 </body>
 </html>

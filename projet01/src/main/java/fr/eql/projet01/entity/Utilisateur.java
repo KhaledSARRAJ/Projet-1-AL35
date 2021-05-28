@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,18 +13,22 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@NamedQueries({
+	@NamedQuery(name="Utilisateur.findByProfil", query="SELECT u FROM Utilisateur AS u WHERE u.profile=:profil"),
+	@NamedQuery(name="Utilisateur.findAll", query="SELECT u FROM Utilisateur u")})
 @Entity
 @Getter @Setter @NoArgsConstructor 
 public class Utilisateur implements Serializable{
@@ -36,8 +39,7 @@ public class Utilisateur implements Serializable{
 	private String nom;
 	private String prenom;
 	@Temporal(TemporalType.DATE) // 2021-05-25 <-- en bdd
-	// @DateTimeFormat(pattern = "yyyy-MM-dd")
-	private Date dateNais;
+	private Date dateNais; 
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")

@@ -2,13 +2,13 @@ package fr.eql.projet01.init;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import fr.eql.projet01.dao.AbonnementRepository;
@@ -69,6 +69,8 @@ public class InitDataSet {
 	private SupportRepository supportRepository;
 
 	@Autowired
+    	private PasswordEncoder passwordEncoder;	
+	@Autowired
 	private ThemeRepository themeRepository;
 
 	@Autowired
@@ -128,36 +130,36 @@ public class InitDataSet {
 		MotifResiliation motifResiliationAutre = insertMotifResiliation(null, "Autre");
 		
 		//Utilisateurs
-
+		
 		Utilisateur utilisateur1 = insertUtilisateur(null, "Bruno", "Berthiaume", "1970-12-14", SexeHomme,
-				"bruno.berthiaume@mail.com", "0699085253", "57 rue de Raymond Poincaré", null, "bruno", "bruno",
+				"bruno.berthiaume@mail.com", "0699085253", "57 rue de Raymond Poincaré", null, "bruno", passwordEncoder.encode("bruno"),
 				"2018-02-15", null, Paris3, null, droitsUtilisateur);
 		Utilisateur utilisateur2 = insertUtilisateur(null, "Lola", "Vercammen", "1980-10-14", sexeFemme,
-				"lola.vercammen@mail.com", "0603010004", "10 Rue Edmond Rousse", null, "lola", "lola", "2018-02-15", null,
+				"lola.vercammen@mail.com", "0603010004", "10 Rue Edmond Rousse", null, "lola", passwordEncoder.encode("lola"), "2018-02-15", null,
 				Paris4, null, droitsUtilisateur);
 		Utilisateur utilisateur3 = insertUtilisateur(null, "Pénélope", "Descamps", "1960-12-14", sexeFemme,
-				"penelope.descamps@mail.com", "0603010006", "75 Boulevard Arago", null, "penelope", "penelope",
+				"penelope.descamps@mail.com", "0603010006", "75 Boulevard Arago", null, "penelope", passwordEncoder.encode("penelope"),
 				"2018-02-15", null, Marseille, null, droitsUtilisateur);
 		Utilisateur utilisateur4 = insertUtilisateur(null, "Lucas", "Renard", "1985-01-15", SexeHomme,
-				"lucas.renard@mail.com", "0602149845", "15 Allées de l'Europe", null, "lucas", "lucas", "2018-02-15",
+				"lucas.renard@mail.com", "0602149845", "15 Allées de l'Europe", null, "lucas", passwordEncoder.encode("lucas"), "2018-02-15",
 				null, Bordeaux, null, droitsUtilisateur);
 		Utilisateur utilisateur5 = insertUtilisateur(null, "Corinne", "Marques", "1984-02-14", sexeFemme,
-				"corinne.marques@mail.com", "0602149848", "13 Rue de la Courneuve", null, "corinne", "corinne",
+				"corinne.marques@mail.com", "0602149848", "13 Rue de la Courneuve", null, "corinne", passwordEncoder.encode("corinne"),
 				"2018-02-15", null, Paris1, null, droitsUtilisateur);
 		Utilisateur utilisateur6 = insertUtilisateur(null, "Ralph", "Montjoie", "1975-08-10", SexeHomme,
-				"ralph.montjoie@mail.com", "0602149852", "29 Rue de Champagne", null, "ralph", "ralph", "2018-02-15",
+				"ralph.montjoie@mail.com", "0602149852", "29 Rue de Champagne", null, "ralph", passwordEncoder.encode("ralph"), "2018-02-15",
 				null, Paris3, null, droitsUtilisateur);
 		Utilisateur utilisateur7 = insertUtilisateur(null, "Danielle", "Langlois", "1990-03-03", sexeFemme,
-				"danielle.langlois@mail.com", "0602149854", "Rue de l'Asile Popincourt", null, "danielle", "danielle",
+				"danielle.langlois@mail.com", "0602149854", "Rue de l'Asile Popincourt", null, "danielle", passwordEncoder.encode("danielle"),
 				"2018-02-15", null, Paris17, null, droitsUtilisateur);
 		Utilisateur utilisateur8 = insertUtilisateur(null, "Claire", "Poissonnier", "1998-05-05", sexeFemme,
-				"claire.poissonnier@mail.com", "0603010040", "6 rue la Fayette", null, "claire", "claire", "2018-02-15",
+				"claire.poissonnier@mail.com", "0603010040", "6 rue la Fayette", null, "claire", passwordEncoder.encode("claire"), "2018-02-15",
 				null, Paris12, null, droitsUtilisateur);
 		Utilisateur utilisateur9 = insertUtilisateur(null, "Charles", "Godin", "1994-06-08", SexeHomme,
-				"charles.godin@mail.com", "0603010044", "29 rue Pierre Nicole", null, "charles", "charles", "2018-02-15",
+				"charles.godin@mail.com", "0603010044", "29 rue Pierre Nicole", null, "charles", passwordEncoder.encode("charles"), "2018-02-15",
 				null, Rennes, null, droitsUtilisateur);
 		Utilisateur utilisateur10 = insertUtilisateur(null, "Annie", "Bonnet", "1970-12-14", sexeFemme,
-				"annie.bonnet@mail.com", "0603010048", "16 rue de Verdun", null, "annie", "annie", "2018-02-15", null,
+				"annie.bonnet@mail.com", "0603010048", "16 rue de Verdun", null, "annie", passwordEncoder.encode("annie"), "2018-02-15", null,
 				Paris20, null, droitsUtilisateur);
 
 		
@@ -227,7 +229,7 @@ public class InitDataSet {
 				"A cause de son nez, Cyrano n'ose songer à séduire Roxane. Mais puisqu'elle aime Christian, pourquoi ne pas tenter une expérience ?",
 				"2019-06-04", utilisateur4);
 		addThemePub(7, 7);
-
+		
 		insertPublication(null, "Les Nénufars",
 				"Cette peinture est une séquence d’environ 250 peintures à l’huile. La toile a été réalisée par le très populaire impressionniste Claude Monet",
 				"2020-05-04", utilisateur4);
@@ -240,7 +242,12 @@ public class InitDataSet {
 				utilisateur4);
 		addThemePub(9, 1);
 		insertSupport(null, "Image", "Revolver.jpg");
-		addSupportPub(9, 8);
+		addSupportPub(9, 8); 
+		
+		//rajout support cyrano sur la publication cyrano
+		insertSupport(null, "Image", "cyrano.jpg");
+		addSupportPub(7, 9); 
+
 
 		// annonce
 		insertAnnonce(null, "Recherche modeles", "Recherche model pour réaliser des portraits en peinture", 15.0,
@@ -268,7 +275,7 @@ public class InitDataSet {
 
 	private void insertSupport(Long id, String typeSupport, String chemin) {
 		Support support = new Support();
-		support.setId(id);
+		support.setId(id); 
 		support.setTypeSupport(typeSupport);
 		support.setChemin(chemin);
 		supportRepository.save(support);

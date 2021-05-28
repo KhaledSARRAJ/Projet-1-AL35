@@ -6,5 +6,6 @@ public interface UtilisateurService {
 
 	Utilisateur rechercheUtiParId(long id);
 	Utilisateur sauvegardeUtilisatuer(Utilisateur uti);
-	
+	Utilisateur rechercherUtilisateurParProfil(String profil);
+	Utilisateur findInfoUtilisateur(long id);
 }

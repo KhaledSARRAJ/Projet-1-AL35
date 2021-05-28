@@ -1,8 +1,8 @@
 package fr.eql.projet01.service;
 
-import java.text.SimpleDateFormat;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +16,9 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Autowired 
 	private UtilisateurRepository utilisateurRepository;
+	
+	@Autowired
+    private PasswordEncoder passwordEncoder;
 	
 	@Override
 	public Utilisateur rechercheUtiParId(long id) {
@@ -39,6 +42,16 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 		src.setPasseWord(uti.getPasseWord());
 
 		return utilisateurRepository.save(src);
+	}
+	
+	@Override
+	public Utilisateur rechercherUtilisateurParProfil(String profil) {
+		return utilisateurRepository.findByProfil(profil);
+	}
+	
+	@Override
+	public Utilisateur findInfoUtilisateur(long id) {
+		return utilisateurRepository.findById(id).orElse(null);
 	}
 
 }

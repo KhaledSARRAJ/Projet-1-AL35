@@ -28,7 +28,6 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter @NoArgsConstructor 
-//@NamedQuery(name ="Utilisateur.findAllFollowing", query = "select * FROM Utilisateur u INNER JOIN u.Listefollower f WHERE f.following.id = :id")
 public class Utilisateur implements Serializable{
 
 	@Id

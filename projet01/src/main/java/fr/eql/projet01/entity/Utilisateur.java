@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,6 +28,7 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter @NoArgsConstructor 
+//@NamedQuery(name ="Utilisateur.findAllFollowing", query = "select * FROM Utilisateur u INNER JOIN u.Listefollower f WHERE f.following.id = :id")
 public class Utilisateur implements Serializable{
 
 	@Id
@@ -35,7 +37,7 @@ public class Utilisateur implements Serializable{
 	private String nom;
 	private String prenom;
 	@Temporal(TemporalType.DATE) // 2021-05-25 <-- en bdd
-	private Date dateNais;
+	private Date dateNais; 
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")

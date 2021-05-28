@@ -227,7 +227,7 @@ public class InitDataSet {
 				"A cause de son nez, Cyrano n'ose songer à séduire Roxane. Mais puisqu'elle aime Christian, pourquoi ne pas tenter une expérience ?",
 				"2019-06-04", utilisateur4);
 		addThemePub(7, 7);
-
+		
 		insertPublication(null, "Les Nénufars",
 				"Cette peinture est une séquence d’environ 250 peintures à l’huile. La toile a été réalisée par le très populaire impressionniste Claude Monet",
 				"2020-05-04", utilisateur4);
@@ -240,7 +240,11 @@ public class InitDataSet {
 				utilisateur4);
 		addThemePub(9, 1);
 		insertSupport(null, "Image", "Revolver.jpg");
-		addSupportPub(9, 7);
+		addSupportPub(9, 8); 
+		
+		//rajout support cyrano sur la publication cyrano
+		insertSupport(null, "Image", "cyrano.jpg");
+		addSupportPub(7, 9); 
 
 		// annonce
 		insertAnnonce(null, "Recherche modeles", "Recherche model pour réaliser des portraits en peinture", 15.0,

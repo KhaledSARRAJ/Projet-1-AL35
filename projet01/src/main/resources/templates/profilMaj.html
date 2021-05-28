@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{_layout}" layout:fragment="content">
+
+<head>
+<div th:replace="fragments/header :: header-css" />
+</head>
+<body>
+
+	<!-- Haut de page -->
+	<div th:replace="fragments/header :: header" />
+
+	<div>
+		
+		<form th:object="${utilisateur}" method="POST" action="sauvegardeUti">
+		<input th:field="*{id}" name="id" type="hidden"/>
+		<table>
+		<tr>
+			<td><label>Nom</label></td>
+			<td><input th:field="*{nom}" name="nom" type="text"/></td>
+		</tr>
+		<tr>
+			<td><label>Prénom</label></td>
+			<td><input th:field="*{prenom}" name="prenom" type="text"/></td>
+		</tr>
+		<tr>
+			<td><label>Sexe</label></td>
+			<td>
+				<select th:field="*{sexe.id}" > 
+	            <option th:each ="sexes : ${listeSexe}" th:value="${sexes.id}" th:utext="${sexes.id} + ' ' + ${sexes.nonSexe}"></option>
+	            </select>
+			</td>
+		</tr>
+		<tr>
+			<td><label>Date de naissance</label></td>
+			<td th:utext="*{dateNais}" /></td>
+		</tr>
+		<tr>
+			<td><label>Mail</label></td>
+			<td><input th:field="*{mail}"  name="mail" type="text"/></td>
+		</tr>
+		<tr>
+			<td><label>Téléphone</label></td><
+			<td><input th:field="*{telephone}"  name="telephone" type="text"/></td>
+		</tr>
+		<tr>
+			<td><label>Rue</label></td>
+			<td><input th:field="*{rue}"  name="rue" type="text"/></td>
+		</tr>
+		<tr>
+			<td><label>Ville</label></td>
+			<td>
+				<select th:field="*{ville.id}" > 
+	            <option th:each ="villes : ${listeVille}" th:value="${villes.id}" th:utext="${villes.id} + ' ' + ${villes.codePostale} + ' ' + ${villes.localite} + ' ' + ${villes.pays}"></option>
+	            </select>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input th:field="*{ville.localite} "></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input th:field="*{ville.pays} "></td>
+		</tr>
+		<tr>
+			<td><label>Complement</label></td>
+			<td><input th:field="*{complement}" name="complement" type="text"/></td>
+		</tr>
+		<tr>
+			<td><label>Profile</label></td>
+			<td><input th:field="*{profile}" name="profile" type="text"/></td>
+		</tr>
+		<tr>
+			<td><label>Droits</label></td>
+			<td th:utext="*{droits.typeDroit}"></td>
+		</tr>
+		<tr>
+			<td><label>Date d'inscription</label></td>
+			<td th:utext="*{dateInscription}"/></td>
+		</tr>
+
+		
+		</table>
+			<input  type="submit" value="Enregistrer" />		
+		</form>
+	</div>
+
+<!-- 
+
+
+	<div>
+		<table border="1" >
+			<tr th:each ="sexes : ${listeSexe}">
+			    <td th:utext="${sexes.id}"></td>
+			    <td th:utext="${sexes.nonSexe}"></td>
+			 </tr>
+		</table>
+	</div>
+	-->
+	
+	<!-- Pied de page -->
+	<div th:replace="fragments/footer :: footer" />
+
+</body>
+</html>

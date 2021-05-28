@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,6 +36,7 @@ public class Utilisateur implements Serializable{
 	private String nom;
 	private String prenom;
 	@Temporal(TemporalType.DATE) // 2021-05-25 <-- en bdd
+	// @DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateNais;
 	
 	@ManyToOne
@@ -82,4 +84,17 @@ public class Utilisateur implements Serializable{
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private MotifResiliation MotifResiliation;
+
+	@Override
+	public String toString() {
+		return "Utilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dateNais=" + dateNais + ", sexe="
+				+ sexe + ", mail=" + mail + ", telephone=" + telephone + ", rue=" + rue + ", ville=" + ville
+				+ ", complement=" + complement + ", profile=" + profile + ", passeWord=" + passeWord
+				+ ", dateInscription=" + dateInscription + ", dateResiliation=" + dateResiliation + ", signalement="
+				+ signalement + ", droits=" + droits + ", MotifResiliation=" + MotifResiliation + "]";
+	}
+
+
+	
+	
 }

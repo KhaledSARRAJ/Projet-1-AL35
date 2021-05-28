@@ -240,7 +240,7 @@ public class InitDataSet {
 				utilisateur4);
 		addThemePub(9, 1);
 		insertSupport(null, "Image", "Revolver.jpg");
-		addSupportPub(9, 7);
+		addSupportPub(9, 8);
 
 		// annonce
 		insertAnnonce(null, "Recherche modeles", "Recherche model pour réaliser des portraits en peinture", 15.0,

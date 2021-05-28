@@ -15,7 +15,7 @@
             <br/>
             <div th:if="${message}" th:text="${message}" th:class="${'alert '+ alertClass}"></div>
             <br/>
-            <form th:action="@{/admin/product/upload/{id} (id = ${id})}" method="post" enctype="multipart/form-data">
+            <form th:action="@{/upload/{id} (id = ${id})}" method="post" enctype="multipart/form-data">
                 <div class="col-sm-12">
 
                     <div class="form-group">

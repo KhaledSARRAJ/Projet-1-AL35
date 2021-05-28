@@ -17,7 +17,6 @@ import fr.eql.projet01.entity.Utilisateur;
 import fr.eql.projet01.service.UtilisateurService;
 
 @Controller
-@SessionAttributes({ "utilisateurCourant" })
 public class UtilisateurControler {
 
 	@Autowired

@@ -23,29 +23,22 @@ body {
 			<div class="panel-heading">Faire une publication</div>
 			<div class="panel-body">
 
-				<form th:action="@{save}" method="post">
+				<form th:action="@{/save}" th:object="${productDto}" method="post">
 					<div class="form-group">
-						<label class="control-label">ID :</label> <input
-							class="form-control" type="text" name="id"
-							th:value="${publication.id}" /> <span class="red"
-							th:errors="${publication.id}"></span>
-					</div>
-
-					<div class="form-group">
-						<label class="control-label">Titre :</label> <input
-							class="form-control" type="text" name="titre"
-							th:value="${publication.titre}" /> <span class="red"
-							th:errors="${publication.titre}"></span>
+						<label class="control-label">ID :</label> 
+						<input class="form-control" type="text" name="id" th:field="*{id}" /> 
+						<span class="red" th:errors="*{id}"></span>
 					</div>
 					<div class="form-group">
-						<label class="control-label">Texte :</label> <input
-							class="form-control" type="text" name="texte"
-							th:value="${publication.texte}" /> <span class="red"
-							th:errors="${publication.texte}"></span>
-
+						<label class="control-label">Titre :</label> 
+						<input class="form-control" type="text" name="titre" th:field="*{titre}" />
+						<span class="red" th:errors="*{titre}"></span> 
 					</div>
-
-
+					<div class="form-group">
+						<label class="control-label">Texte :</label> 
+						<input class="form-control" type="text" name="texte" th:field="*{texte}" />
+						<span class="red" th:errors="*{texte}"></span> 
+					</div>
 					<div>
 						<button type="submit" class="btn btn-primary">Save</button>
 					</div>

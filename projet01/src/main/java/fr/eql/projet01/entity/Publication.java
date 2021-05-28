@@ -24,6 +24,12 @@ import lombok.Setter;
 @Getter @Setter @NoArgsConstructor 
 public class Publication implements Serializable{
 
+	@Override
+	public String toString() {
+		return "Publication [id=" + id + ", titre=" + titre + ", texte=" + texte + ", dateDebut=" + dateDebut
+				+ ", utilisateur=" + utilisateur + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

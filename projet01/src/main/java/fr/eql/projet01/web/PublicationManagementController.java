@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,7 +32,7 @@ import fr.eql.projet01.service.PublicationService;
 import fr.eql.projet01.service.SupportService;
 
 @Controller
-@RequestMapping("/admin/product")
+//@RequestMapping("/user/product")
 public class PublicationManagementController {
 
 	private PublicationService productService;
@@ -76,25 +77,26 @@ public class PublicationManagementController {
 		productService.deleteById(id);
 		redirectAttributes.addFlashAttribute("message", "Delete Product ID: " + id + " is Done");
 		redirectAttributes.addFlashAttribute("alertClass", "alert-info");
-		return "redirect:/admin/product/s?page=" + page + "&motCle=" + motCle + "&size=" + size;
+		return "redirect:/s?page=" + page + "&motCle=" + motCle + "&size=" + size;
 	}
 
 	@GetMapping(value = "/FormPublication")
 	public String formPublication(Model model) {
-		model.addAttribute("publication", new Publication());
+		model.addAttribute("productDto", new Publication());
 		return "FormPublication";
 	}
 
-	@PostMapping(value = "/save")
-	public String save(Model model, @Valid Publication publication, BindingResult bindingresult) {
+	@RequestMapping("/save")
+	public String save(Model model, @ModelAttribute("productDto") Publication publication, BindingResult bindingresult) {
 		if (bindingresult.hasErrors()) {
 			return "publicationAddForm";
 		}
 		productService.saveOrUpdate(publication);
+		model.addAttribute("productDto", publication);
 		return "adminProductDetails";
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	@RequestMapping("/edit/{id}")
 	public String edit(Model model, @PathVariable("id") Long id) {
 		Publication p = productService.findById(id);
 		// .orelse(null)
@@ -102,6 +104,7 @@ public class PublicationManagementController {
 		p.setSupport(listSupport);
 
 		model.addAttribute("productDto", p);
+		System.out.println(p);
 		return "EditPublication";
 	}
 
@@ -119,20 +122,20 @@ public class PublicationManagementController {
 	if (file.getSize() == 0){
             redirectAttributes.addFlashAttribute("message","Select Image file (jpg/png)");
             redirectAttributes.addFlashAttribute("alertClass","alert-danger");
-            return "redirect:/admin/product/uploadImageForm/"+id;
+            return "redirect:/uploadImageForm/"+id;
         }
 
         if (file.getSize()/1024 >= 300){
            redirectAttributes.addFlashAttribute("message","Image size is not valid ( max size should be less than 300 KB )");
            redirectAttributes.addFlashAttribute("alertClass","alert-danger");
-	return "redirect:/admin/product/uploadImageForm/"+id;
+	return "redirect:/uploadImageForm/"+id;
         }
 
        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
         if (!(fileName.endsWith(".jpg") || fileName.endsWith(".png")) ){
             redirectAttributes.addFlashAttribute("message","Image type is not valid");
             redirectAttributes.addFlashAttribute("alertClass","alert-danger");
-            return "redirect:/admin/product/uploadImageForm/"+id;
+            return "redirect:/uploadImageForm/"+id;
         }
         Publication dto= new Publication();
         Path path= Paths.get("src/main/resources/static/"+fileName);
@@ -152,6 +155,6 @@ public class PublicationManagementController {
             e.printStackTrace();
         }
 
-       return "redirect:/admin/product/s";
+       return "redirect:/s";
    }
 }

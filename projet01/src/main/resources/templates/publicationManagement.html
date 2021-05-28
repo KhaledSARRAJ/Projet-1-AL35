@@ -23,11 +23,11 @@ body {
 			<div class="card-header card bg-info text-white">
 				<h2>Publication List</h2>
 				<p>
-					<a th:href="@{/admin/product/FormPublication}" class="btn btn-success">Add
+					<a th:href="@{/FormPublication}" class="btn btn-success">Add
 						Publication</a>
 				</p>
 			</div>
-			<form th:action="@{/admin/product/s}" method="get">
+			<form th:action="@{/s}" method="get">
 				<div class="mb-3">
 					<label class="control-label">Mot Clé:</label> <input type="text"
 						name="motCle" th:value="${motCle}" class="p-1" />
@@ -63,13 +63,13 @@ body {
 								<td th:text="${productDto.texte}"></td>
 
                         <td>
-                            <a href="#" class="btn btn-info" th:href="@{/admin/product/find/{id} (id=${productDto.id})}" >Details</a>
+                            <a href="#" class="btn btn-info" th:href="@{/find/{id} (id=${productDto.id})}" >Details</a>
                         </td>
                         <td>
-                            <a th:href="@{/admin/product/uploadImageForm/{id} (id=${productDto.id})}" class="btn btn-success" >Add Image</a>
+                            <a th:href="@{/uploadImageForm/{id} (id=${productDto.id})}" class="btn btn-success" >Add Image</a>
                         </td>
                         <td>
-                        	<a class="btn btn-info"  th:href="@{edit(id=${productDto.id})}">Edit</a>
+                        	<a class="btn btn-info"  th:href="@{/edit/{id} (id=${productDto.id})}">Edit</a>
                         </td>
                        
                         <td><a  class="btn btn-danger" onclick="javascript:return confirm('Etes vous sûre de vouloir supprimer ?')"
@@ -89,7 +89,7 @@ body {
 			</div>
 
 			<div class="card-footer">
-				<a th:href="@{/admin/product/s}" class="btn btn-danger">Back</a>
+				<a th:href="@{/s}" class="btn btn-danger">Back</a>
 
 			</div>
 		</div>

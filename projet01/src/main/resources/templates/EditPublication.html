@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:text="#{project.title}"></title>
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css} " />
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<style>
+body {
+	padding-top: 100px;
+}
+</style>
+</head>
+<body>
+
+	<nav th:insert="fragments/navbar :: nav_fragment"></nav>
+	<div class="spacer col-md-6">
+
+		<div class="panel panel-default">
+			<div class="panel-heading">Faire une publication</div>
+			<div class="panel-body">
+
+				<form th:action="@{save}" method="post">
+					<div class="form-group">
+						<label class="control-label">ID :</label> <input
+							class="form-control" type="text" name="id"
+							th:value="${publication.id}" /> <span class="red"
+							th:errors="${publication.id}"></span>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label">Titre :</label> <input
+							class="form-control" type="text" name="titre"
+							th:value="${publication.titre}" /> <span class="red"
+							th:errors="${publication.titre}"></span>
+					</div>
+					<div class="form-group">
+						<label class="control-label">Texte :</label> <input
+							class="form-control" type="text" name="texte"
+							th:value="${publication.texte}" /> <span class="red"
+							th:errors="${publication.texte}"></span>
+
+					</div>
+
+
+					<div>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+
+				</form>
+
+
+
+			</div>
+		</div>
+	</div>
+	<footer th:insert="fragments/footer :: footer_fragment"></footer>
+</body>
+</html>

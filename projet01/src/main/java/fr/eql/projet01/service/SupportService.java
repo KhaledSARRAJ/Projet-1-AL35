@@ -7,5 +7,9 @@ import fr.eql.projet01.entity.Support;
 
 public interface SupportService {
 
+
 	List<Support> findSupportByPublication(Publication publicationSupport);
+	List<Support> findByPublicationSupport(Publication publication);
+
+
 }

@@ -2,7 +2,6 @@ package fr.eql.projet01.init;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
@@ -29,9 +28,11 @@ import fr.eql.projet01.entity.Droits;
 import fr.eql.projet01.entity.MotifResiliation;
 import fr.eql.projet01.entity.MotifSignalement;
 import fr.eql.projet01.entity.Publication;
+
 import fr.eql.projet01.entity.Sexe;
 import fr.eql.projet01.entity.Signalement;
 import fr.eql.projet01.entity.Support;
+
 import fr.eql.projet01.entity.Theme;
 import fr.eql.projet01.entity.Utilisateur;
 import fr.eql.projet01.entity.Ville;
@@ -272,7 +273,7 @@ public class InitDataSet {
 
 	private void insertSupport(Long id, String typeSupport, String chemin) {
 		Support support = new Support();
-		support.setId(id);
+		support.setId(id); 
 		support.setTypeSupport(typeSupport);
 		support.setChemin(chemin);
 		supportRepository.save(support);

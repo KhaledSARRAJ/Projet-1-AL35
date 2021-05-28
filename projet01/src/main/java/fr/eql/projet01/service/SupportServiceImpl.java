@@ -11,16 +11,25 @@ import fr.eql.projet01.dao.SupportRepository;
 import fr.eql.projet01.entity.Publication;
 import fr.eql.projet01.entity.Support;
 
+
+
 @Service
 @Transactional
 public class SupportServiceImpl implements SupportService {
 	
-	@Autowired
-	private SupportRepository supportRepository; 
 
+	@Autowired
+	private SupportRepository supportRepository;
+
+	@Override
+	public List<Support> findByPublicationSupport(Publication publication) {
+		return supportRepository.findByPublicationSupport(publication);
+
+	}
+	
 	@Override
 	public List<Support> findSupportByPublication(Publication publicationSupport) {
 		return supportRepository.findByPublicationSupport(publicationSupport);
-	}
 
+	}
 }

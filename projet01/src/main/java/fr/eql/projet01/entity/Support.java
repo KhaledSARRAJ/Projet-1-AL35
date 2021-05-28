@@ -1,17 +1,13 @@
 package fr.eql.projet01.entity;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,8 +22,8 @@ public class Support {
 	private Long id;
 	private String typeSupport;
 	private String chemin;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
+	@JoinColumn(name="idPublicationSupport")
 	private Publication publicationSupport;
 	
 	@ManyToOne(fetch = FetchType.LAZY)

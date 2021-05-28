@@ -1,12 +1,11 @@
-package fr.eql.projet01.dao;
+package fr.eql.projet01.service;
 
 import java.util.List;
-
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import fr.eql.projet01.entity.Publication;
 import fr.eql.projet01.entity.Support;
 
-public interface SupportRepository extends JpaRepository<Support, Long> {
+public interface SupportService {
 	List<Support> findByPublicationSupport(Publication publication);
+
 }

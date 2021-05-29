@@ -31,5 +31,6 @@ public interface PublicationService {
 	List<Publication> findPublicationByUser(Utilisateur u);
 
 //	List<Publication> findBySupport  DetailsList(String name);
+	public Page<Publication> findByUtilisateurAndTitreIgnoreCaseContains(Utilisateur utilisateur, String titre, Pageable pageable);
 
 }

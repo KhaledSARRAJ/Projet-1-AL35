@@ -1,5 +1,6 @@
 package fr.eql.projet01.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,7 +23,7 @@ public class Support {
 	private Long id;
 	private String typeSupport;
 	private String chemin;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idPublicationSupport")
 	private Publication publicationSupport;
 	

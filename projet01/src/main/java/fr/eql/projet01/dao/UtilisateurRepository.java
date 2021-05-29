@@ -8,7 +8,7 @@ import fr.eql.projet01.entity.Abonnement;
 import fr.eql.projet01.entity.Utilisateur;
 
 public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long>{
-	public Utilisateur findByProfil(String profil);
+	public Utilisateur findByProfile(String profil) ;
 	public List<Utilisateur> findByNom(String mc);
 
 }

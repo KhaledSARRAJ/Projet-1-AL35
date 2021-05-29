@@ -80,6 +80,13 @@ public class PublicationServiceImpl implements PublicationService {
 		return publicationRepository.findByTitreIgnoreCaseContains( mc,  pageable);
 	}
 
+
+
+	public Page<Publication> findByUtilisateurAndTitreIgnoreCaseContains(Utilisateur utilisateur, String titre, Pageable pageable) {
+		// TODO Auto-generated method stub
+		return publicationRepository.findByUtilisateurAndTitreIgnoreCaseContains(utilisateur, titre,pageable);
+	}
+
 //	@Override
 //	public List<Publication> findBySupportDetailsName(String name) {
 //		// TODO Auto-generated method stub

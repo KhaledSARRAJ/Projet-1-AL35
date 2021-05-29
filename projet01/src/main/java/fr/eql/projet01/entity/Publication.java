@@ -41,7 +41,7 @@ public class Publication implements Serializable{
 	@OneToMany(mappedBy = "publicationSupport", cascade = CascadeType.ALL)
 	private List<Support> support;
 		
-	@ManyToMany(mappedBy = "listPublicationTheme")
+	@ManyToMany(mappedBy = "listPublicationTheme", cascade = CascadeType.ALL)
 	private List<Theme> theme;
 	
 	@ManyToOne

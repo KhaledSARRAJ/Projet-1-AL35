@@ -45,11 +45,12 @@ public class DefaultController {
     	if (principal instanceof UserDetails) {
     	   String username = ((UserDetails)principal).getUsername();
     	   uti = utilisateurService.rechercherUtilisateurParProfil(username);
-    	   session.setAttribute("utiConnect", uti);
+    	   session.setAttribute("utilisateur", uti);
     	}
     	
         rv.setContextRelative(true);
         rv.setUrl("/mur?id="+ uti.getId());
+        //rv.setUrl("/s?id="+ uti.getId());
         return rv;
 
     }
@@ -91,6 +92,6 @@ public class DefaultController {
 	    session.invalidate();
         model.addAttribute("message", "session terminée");
         model.addAttribute("title","welcome");
-        return "/"; 
+        return "/home"; 
     }
 }

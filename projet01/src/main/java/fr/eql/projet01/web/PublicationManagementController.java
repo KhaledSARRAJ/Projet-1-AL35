@@ -5,17 +5,21 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,47 +27,79 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import fr.eql.projet01.entity.Publication;
 import fr.eql.projet01.entity.Support;
+import fr.eql.projet01.entity.Utilisateur;
+import fr.eql.projet01.service.AbonnementService;
 import fr.eql.projet01.service.PublicationService;
 import fr.eql.projet01.service.SupportService;
+import fr.eql.projet01.service.UtilisateurService;
 
 @Controller
 //@RequestMapping("/user/product")
+@SessionAttributes("utilisateur")
 public class PublicationManagementController {
 
 	private PublicationService productService;
-
+	@Autowired
+	private UtilisateurService utilisateurService; 
 	@Autowired
 	public void setProductService(PublicationService productService) {
 		this.productService = productService;
 	}
+	@Autowired
+	private SupportService supportService;
+	@Autowired
+	private AbonnementService aboService;
+	
 
 	@Autowired
 	private SupportService supportservice;
 
-	@GetMapping(path = "/s")
+	@GetMapping(path = "/Publications")
 	public String publications(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "size", defaultValue = "5") int size,
-			@RequestParam(name = "motCle", defaultValue = "") String motCle) {
-		Page<Publication> publicationsList = productService.findByTitreIgnoreCaseContains(motCle,
-				PageRequest.of(page, size));
+			@RequestParam(name = "motCle", defaultValue = "") String motCle,
+			HttpSession session) {
+//		Utilisateur uti = utilisateurService.findInfoUtilisateur(id);
+//		       
+//		    	List<Publication> p = uti.getListPublication();
+//		    	List<Publication> listpub = new ArrayList<Publication>();
+//		    	 for(Publication m: p) {
+//		      	    	List<Support> listSupport = supportService.findSupportByPublication(m);
+//		      	    	m.setSupport(listSupport);
+//		              }
+//		    	 listpub.addAll(p);
+//		    
+//		Utilisateur utilisateur= new Utilisateur();
+//		utilisateur=utilisateurService.findInfoUtilisateur(id);
+		//System.out.println(utilisateur.getNom());
+		
+	Page<Publication> publicationsList = productService.findByUtilisateurAndTitreIgnoreCaseContains((Utilisateur) session.getAttribute("utilisateur"),motCle,	PageRequest.of(page, size));
+		
+		model.addAttribute("user", (Utilisateur) session.getAttribute("utilisateur"));
 		model.addAttribute("publicationsList", publicationsList);
+		for (Publication publication : publicationsList) {
+			System.out.println(publication.getTitre());
+		}
 		model.addAttribute("currentPage", page);
-		model.addAttribute("size", size);
+	model.addAttribute("size", size);
 		model.addAttribute("motCle", motCle);
-		model.addAttribute("pages", new int[publicationsList.getTotalPages()]);
+		model.addAttribute("pages", new int[publicationsList.getTotalPages()]); // 
 
-		return "publicationManagement";
+		return "publicationManagement"; 
 	}
 
-	@GetMapping("/find/{id}")
-	public String getProductById(@PathVariable("id") Long id, Model model) {
-		System.out.println("ID: " + id);
-		Publication optionalProductDto = productService.findById(id);
+
+	@GetMapping("/find")
+	public String getProductById(HttpSession session, Model model) {
+		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		System.out.println("ID: " + utilisateur.getId());
+		Publication optionalProductDto = productService.findById(utilisateur.getId());
 
 		List<Support> listSupport = supportservice.findByPublicationSupport(optionalProductDto);
 		optionalProductDto.setSupport(listSupport);
@@ -72,12 +108,13 @@ public class PublicationManagementController {
 		return "adminProductDetails";
 	}
 
-	@GetMapping(path = "/deletePublications")
+	@RequestMapping(path = "/deletePublications")
 	public String delete(long id, String motCle, String page, String size, RedirectAttributes redirectAttributes) {
 		productService.deleteById(id);
-		redirectAttributes.addFlashAttribute("message", "Delete Product ID: " + id + " is Done");
+		redirectAttributes.addFlashAttribute("message", "Votre publication numéro: " + id + " a été bien supprimé");
 		redirectAttributes.addFlashAttribute("alertClass", "alert-info");
-		return "redirect:/s?page=" + page + "&motCle=" + motCle + "&size=" + size;
+		return "redirect:/Publications?page=" + page + "&motCle=" + motCle + "&size=" + size;
+
 	}
 
 	@GetMapping(value = "/FormPublication")
@@ -87,17 +124,19 @@ public class PublicationManagementController {
 	}
 
 	@RequestMapping("/save")
-	public String save(Model model, @ModelAttribute("productDto") Publication publication, BindingResult bindingresult) {
+	public String save(Model model, @ModelAttribute("productDto") Publication publication, 
+			HttpSession session, BindingResult bindingresult) {
 		if (bindingresult.hasErrors()) {
 			return "publicationAddForm";
 		}
+     	publication.setUtilisateur((Utilisateur) session.getAttribute("utilisateur"));
 		productService.saveOrUpdate(publication);
 		model.addAttribute("productDto", publication);
 		return "adminProductDetails";
+	
 	}
-
 	@RequestMapping("/edit/{id}")
-	public String edit(Model model, @PathVariable("id") Long id) {
+	public String edit(Model model, @PathVariable("id") Long id, HttpSession session) {
 		Publication p = productService.findById(id);
 		// .orelse(null)
 		List<Support> listSupport = supportservice.findByPublicationSupport(p);
@@ -108,7 +147,7 @@ public class PublicationManagementController {
 		return "EditPublication";
 	}
 
-    @GetMapping("/uploadImageForm/{id}")
+	@GetMapping("/uploadImageForm/{id}")
     public String showImageForm(@PathVariable("id") Long id,Model model){
         //productService.findById(id);
         model.addAttribute("id",id);
@@ -155,6 +194,6 @@ public class PublicationManagementController {
             e.printStackTrace();
         }
 
-       return "redirect:/s";
+       return "redirect:/Publications";
    }
 }

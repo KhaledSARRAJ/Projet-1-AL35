@@ -46,7 +46,7 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	
 	@Override
 	public Utilisateur rechercherUtilisateurParProfil(String profil) {
-		return utilisateurRepository.findByProfil(profil);
+		return utilisateurRepository.findByProfile(profil);
 	}
 	
 	@Override

@@ -71,7 +71,7 @@ public class MurPrincipalController {
               model.addAttribute("listPublication",listPublication);
             
 	    }
-        return "/mur"; 
+        return "mur"; 
     }
 	
 

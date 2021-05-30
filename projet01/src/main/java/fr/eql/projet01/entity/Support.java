@@ -26,7 +26,9 @@ public class Support {
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idPublicationSupport")
 	private Publication publicationSupport;
-	
+    @Lob // save files to db
+    private byte[] image;
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Annonce annonceSupport;
 }

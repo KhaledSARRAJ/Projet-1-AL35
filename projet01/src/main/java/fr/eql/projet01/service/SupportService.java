@@ -10,6 +10,6 @@ public interface SupportService {
 
 	List<Support> findSupportByPublication(Publication publicationSupport);
 	List<Support> findByPublicationSupport(Publication publication);
-
+	Support enregisterSupport(Support support);
 
 }

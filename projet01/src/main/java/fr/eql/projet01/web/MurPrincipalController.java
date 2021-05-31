@@ -75,6 +75,27 @@ public class MurPrincipalController {
     }
 	
 
+	@GetMapping("/profilUti")
+	public String affInfoUti(Model model, @RequestParam("id") Long id) {
+		
+		if (id != null) {
+			Utilisateur uti = utilisateurService.rechercheUtiParId(id);
+			if (uti != null) {
+				List<Publication> p = uti.getListPublication();
+				 for(Publication m: p) {
+		      	    	List<Support> listSupport = supportService.findSupportByPublication(m);
+		      	    	m.setSupport(listSupport);
+		              }
+				model.addAttribute("utilisateur", uti);
+				model.addAttribute("publications", p);
+				return "ProfilAutreUtilisateur";
+			} else {
+				return "profilErreur";
+			}
+		} else {
+			return "profilErreur";
+		}
+	}
     
     
 }

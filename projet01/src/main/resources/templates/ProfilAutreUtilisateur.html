@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Arts & Chat</title>
+<link rel="stylesheet" href="AutreUtilisateur.css">
 <link th:rel="stylesheet"
 	th:href="@{/webjars/bootstrap/css/bootstrap.min.css} " />
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
@@ -23,11 +24,8 @@ body {
 
 		<div class="card">
 			<div class="card-header card bg-info text-white">
-				<h2>Détail profil</h2>
-				<p>
-					<a th:href="'majUti?id='+${utilisateur.id}" class="btn btn-success">Modifier
-						profil</a>
-				</p>
+				<h2>Profil</h2>
+				
 			</div>
 
 			<div class="card-body">
@@ -48,55 +46,26 @@ body {
 						<td><label>Sexe</label></td>
 						<td th:utext="*{sexe.nonSexe}" /></td>
 					</tr>
-					<tr>
-						<td><label>Date de naissance</label></td>
-						<td th:utext="*{dateNais}" /></td>
-					</tr>
-					<tr>
-						<td><label>Mail</label></td>
-						<td th:utext="*{mail}" /></td>
-					</tr>
-					<tr>
-						<td><label>Téléphone</label></td>
-						<td th:utext="*{telephone}" /></td>
-					</tr>
-					<tr>
-						<td><label>Rue</label></td>
-						<td th:utext="*{rue}" /></td>
-					</tr>
-					<tr>
-						<td><label>Ville</label></td>
-						<td th:utext="*{ville.codePostale} "></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td th:utext="*{ville.localite} "></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td th:utext="*{ville.pays} "></td>
-					</tr>
-					<tr>
-						<td><label>Complément</label></td>
-						<td th:utext="*{complement}" /></td>
-					</tr>
-					<tr>
-						<td><label>Username</label></td>
-						<td th:utext="*{profile}" /></td>
-					</tr>
-					<tr>
-						<td><label>Droits</label></td>
-						<td th:utext="*{droits.typeDroit}"></td>
-					</tr>
-					<tr>
-						<td><label>Date d'inscription</label></td>
-						<td th:utext="*{dateInscription}" /></td>
-					</tr>
+					
 				</table>
 
 			</div>
 		</div>
-
+		<br/>
+		
+		<div class="publicard">
+		<div th:each="publication: ${publications}">
+		<div class="card" style="width: 18rem;">
+		<div th:each="s: ${publication.support}" class="card-img-top">
+							<img th:src="${s.chemin}" width="300" height="200" />
+						</div>
+  <!--  	<img src="" class="card-img-top" alt=""> -->	
+  			<div class="card-body">
+   			 <h5 class="card-title" th:text="${publication.titre}"></h5>
+    		<p class="card-text" th:text="${publication.texte}"></p>
+  			</div>
+			</div>
+		</div>
 	</div>
 
 

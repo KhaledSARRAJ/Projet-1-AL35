@@ -247,6 +247,13 @@ public class InitDataSet {
 		//rajout support cyrano sur la publication cyrano
 		insertSupport(null, "Image", "cyrano.jpg");
 		addSupportPub(7, 9); 
+		
+		insertPublication(null, "Ludwig van Beethoven",
+				"L’année 1802 marque un premier grand tournant dans la vie du compositeur. Souffrant d'acouphènes, il commence en effet depuis 1796 à prendre conscience d’une surdité qui devait irrémédiablement progresser jusqu’à devenir totale avant 1820.", "2020-07-26",
+				utilisateur1);
+		addThemePub(10, 1);
+		insertSupport(null, "Image", "beethoven.jpg");
+		addSupportPub(10, 10);
 
 
 		// annonce

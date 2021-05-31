@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title th:text="#{project.title}"></title>
+<title>Arts & Chat</title>
 <link th:rel="stylesheet"
 	th:href="@{/webjars/bootstrap/css/bootstrap.min.css} " />
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
@@ -25,7 +25,7 @@ body {
 			<div class="card-header card bg-info text-white">
 				<h2>Détail profil</h2>
 				<p>
-					<a th:href="'majUti?id='+${utilisateur.id}" class="btn btn-success">modifier
+					<a th:href="'majUti?id='+${utilisateur.id}" class="btn btn-success">Modifier
 						profil</a>
 				</p>
 			</div>
@@ -48,7 +48,7 @@ body {
 							<td><label>Sexe</label></td>
 							<td><select th:field="*{sexe.id}">
 									<option th:each="sexes : ${listeSexe}" th:value="${sexes.id}"
-										th:utext="${sexes.id} + ' ' + ${sexes.nonSexe}"></option>
+										th:utext="${sexes.nonSexe}"></option>
 							</select></td>
 						</tr>
 						<tr>
@@ -60,7 +60,7 @@ body {
 							<td><input th:field="*{mail}" name="mail" type="text" /></td>
 						</tr>
 						<tr>
-							<td><label>Téléphone</label></td><
+							<td><label>Téléphone</label></td>
 							<td><input th:field="*{telephone}" name="telephone"
 								type="text"/></td>
 						</tr>
@@ -73,7 +73,7 @@ body {
 							<td><select th:field="*{ville.id}">
 									<option th:each="villes : ${listeVille}"
 										th:value="${villes.id}"
-										th:utext="${villes.id} + ' ' + ${villes.codePostale} + ' ' + ${villes.localite} + ' ' + ${villes.pays}"></option>
+										th:utext="${villes.codePostale} + ' ' + ${villes.localite} + ' ' + ${villes.pays}"></option>
 							</select></td>
 						</tr>
 						<tr>

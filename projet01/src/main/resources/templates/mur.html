@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Projet 1</title>
+<title>Arts & Chat</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="mur.css">
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -43,13 +43,15 @@ body {
 								class="title"></span>
 						</div>
 						<hr />
+						<h5 class= "titlePub" th:text="${publication.titre}"></h5>
+						<br/>
 						<div th:each="s: ${publication.support}" class="support">
 							<img th:src="${s.chemin}" width="300" height="200" />
 						</div>
 						<br />
 						<p th:text=${publication.texte} class="text"></p>
 						<div class="bottom">
-							<a th:href="'affInfoUti?id='+${publication.utilisateur.id}">Accéder
+							<a th:href="'profilUti?id='+${publication.utilisateur.id}">Accéder
 								au profil</a>
 						</div>
 					</section>

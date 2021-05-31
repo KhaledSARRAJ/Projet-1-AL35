@@ -95,7 +95,7 @@ public class PublicationManagementController {
 	}
 
 
-	@GetMapping("/find")
+/*	@GetMapping("/find")
 	public String getProductById(HttpSession session, Model model) {
 		Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
 		System.out.println("ID: " + utilisateur.getId());
@@ -106,12 +106,24 @@ public class PublicationManagementController {
 
 		model.addAttribute("productDto", optionalProductDto);
 		return "adminProductDetails";
+	}*/
+	
+	@RequestMapping("/find/{id}")
+	public String getProductById( @PathVariable("id") Long id, HttpSession session, Model model) {
+		//Utilisateur utilisateur = (Utilisateur) session.getAttribute("utilisateur");
+		//System.out.println("ID: " + utilisateur.getId());
+		Publication optionalProductDto = productService.findById(id);
+
+		List<Support> listSupport = supportservice.findByPublicationSupport(optionalProductDto);
+		optionalProductDto.setSupport(listSupport);
+		model.addAttribute("productDto", optionalProductDto);
+		return "adminProductDetails";
 	}
 
 	@RequestMapping(path = "/deletePublications")
 	public String delete(long id, String motCle, String page, String size, RedirectAttributes redirectAttributes) {
 		productService.deleteById(id);
-		redirectAttributes.addFlashAttribute("message", "Votre publication numéro: " + id + " a été bien supprimé");
+		redirectAttributes.addFlashAttribute("message", "Votre publication a bien été supprimée");
 		redirectAttributes.addFlashAttribute("alertClass", "alert-info");
 		return "redirect:/Publications?page=" + page + "&motCle=" + motCle + "&size=" + size;
 
@@ -185,7 +197,16 @@ public class PublicationManagementController {
           //  dto.getSupport().setImage(file.getBytes());
             List<Support> listSupport = supportservice.findByPublicationSupport(dto);
             dto.setSupport(listSupport);
-
+            
+            
+            //rajout pour la démo 
+            System.out.println(fileName);
+            Support sup = new Support();
+            sup.setChemin(fileName);
+            sup.setPublicationSupport(dto);
+            sup.setTypeSupport("image");
+            supportservice.enregisterSupport(sup);
+            
     		model.addAttribute("productDto", dto);
             productService.saveOrUpdate(dto);
             redirectAttributes.addFlashAttribute("message","Image successfully uploaded. file name : " + fileName);

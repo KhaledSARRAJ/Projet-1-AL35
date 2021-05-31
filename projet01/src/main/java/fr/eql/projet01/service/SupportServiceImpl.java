@@ -32,4 +32,10 @@ public class SupportServiceImpl implements SupportService {
 		return supportRepository.findByPublicationSupport(publicationSupport);
 
 	}
+
+	@Override
+	public Support enregisterSupport(Support support) {
+		// TODO Auto-generated method stub
+		return supportRepository.save(support);
+	}
 }

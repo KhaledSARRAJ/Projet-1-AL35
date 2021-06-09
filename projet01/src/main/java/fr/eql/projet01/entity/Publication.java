@@ -48,10 +48,6 @@ public class Publication implements Serializable{
 	@JoinColumn(referencedColumnName = "id")
 	private Utilisateur utilisateur;	
 	
-	@OneToMany
-	@JoinColumn(referencedColumnName = "id")
-	private List<Signalement> signalement;
-
 	public Publication(String titre, String texte) {
 		super();
 		this.titre = titre;

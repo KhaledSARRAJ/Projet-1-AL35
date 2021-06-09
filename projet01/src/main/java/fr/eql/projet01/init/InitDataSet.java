@@ -15,10 +15,8 @@ import fr.eql.projet01.dao.AbonnementRepository;
 import fr.eql.projet01.dao.AnnonceRepository;
 import fr.eql.projet01.dao.DroitsRepository;
 import fr.eql.projet01.dao.MotifResiliationRepository;
-import fr.eql.projet01.dao.MotifSignalementRepository;
 import fr.eql.projet01.dao.PublicationRepository;
 import fr.eql.projet01.dao.SexeRepository;
-import fr.eql.projet01.dao.SignalementRepository;
 import fr.eql.projet01.dao.SupportRepository;
 import fr.eql.projet01.dao.ThemeRepository;
 import fr.eql.projet01.dao.UtilisateurRepository;
@@ -27,10 +25,8 @@ import fr.eql.projet01.entity.Abonnement;
 import fr.eql.projet01.entity.Annonce;
 import fr.eql.projet01.entity.Droits;
 import fr.eql.projet01.entity.MotifResiliation;
-import fr.eql.projet01.entity.MotifSignalement;
 import fr.eql.projet01.entity.Publication;
 import fr.eql.projet01.entity.Sexe;
-import fr.eql.projet01.entity.Signalement;
 import fr.eql.projet01.entity.Support;
 import fr.eql.projet01.entity.Theme;
 import fr.eql.projet01.entity.Utilisateur;
@@ -54,16 +50,10 @@ public class InitDataSet {
 	private MotifResiliationRepository motifResiliationRepository;
 
 	@Autowired
-	private MotifSignalementRepository motifSignalementRepository;
-
-	@Autowired
 	private PublicationRepository publicationRepository;
 
 	@Autowired
 	private SexeRepository sexeRepository;
-
-	@Autowired
-	private SignalementRepository signalementRepository;
 
 	@Autowired
 	private SupportRepository supportRepository;
@@ -182,10 +172,6 @@ public class InitDataSet {
 		insertTheme(null, "Sculture", "Sculture");
 		insertTheme(null, "Cinema", "Cinema");
 		insertTheme(null, "Théatre", "Théatre");
-
-		// motif signalement
-		insertMotifSignalement(null, "Propos incorrecte");
-		insertMotifSignalement(null, "Non respect de la charte");
 
 		// publication
 		insertPublication(null, "Joconde", "Portrait de Mona Lisa de l'artiste Léonard de Vinci ", "2020-06-12", utilisateur1);
@@ -432,41 +418,6 @@ public class InitDataSet {
 		supportRepository.save(s);
 	}
 
-	private void insertMotifSignalement(Long id, String LibelleMotif) {
-		MotifSignalement motifSignalement = new MotifSignalement();
-		motifSignalement.setId(id);
-		motifSignalement.setLibelleMotif(LibelleMotif);
-		motifSignalementRepository.save(motifSignalement);
-	}
 
-	private void insertSignalement(Long id, String dateSignalement, String datetraitement, long idMotif, long idPub,
-			long idAnnonce) throws ParseException {
-		Signalement signalement = new Signalement();
-		signalement.setId(id);
-		if(dateSignalement != null) {
-		signalement.setDateSignalement(new SimpleDateFormat("yyyy-MM-dd").parse(dateSignalement));
-		}else {
-			signalement.setDateSignalement(null);
-		}
-		if(datetraitement !=null) {
-		signalement.setDatetraitement(new SimpleDateFormat("yyyy-MM-dd").parse(datetraitement));
-		}else {
-			signalement.setDatetraitement(null);
-		}
-		MotifSignalement motif = motifSignalementRepository.findById(idMotif).get();
-		signalement.setMotifSignalement(motif);
-		Publication pub = publicationRepository.findById(idPub).get();
-		signalement.setPublication(pub);
-		Annonce an = annonceRepository.findById(idAnnonce).get();
-		signalement.setAnnonce(an);
-		signalementRepository.save(signalement);
-	}
-
-	private void addSignalementUti(long idUti, long idSignalement) {
-		Utilisateur uti = utilisateurRepository.findById(idUti).get();
-		Signalement si = signalementRepository.findById(idSignalement).get();
-		si.addUtilisateur(uti);
-		signalementRepository.save(si);
-	}
 
 }

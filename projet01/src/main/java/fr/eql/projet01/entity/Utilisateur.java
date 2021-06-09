@@ -67,10 +67,7 @@ public class Utilisateur implements Serializable{
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="utilisateur")
 	private List<Annonce> listeAnnonce;
-	
-	@ManyToMany(mappedBy = "listUtilisateurSignalement")
-	private List<Signalement> signalement;
-	
+		
 	@OneToMany(mappedBy="follower")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Abonnement> Listefollower;
@@ -92,11 +89,9 @@ public class Utilisateur implements Serializable{
 		return "Utilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", dateNais=" + dateNais + ", sexe="
 				+ sexe + ", mail=" + mail + ", telephone=" + telephone + ", rue=" + rue + ", ville=" + ville
 				+ ", complement=" + complement + ", profile=" + profile + ", passeWord=" + passeWord
-				+ ", dateInscription=" + dateInscription + ", dateResiliation=" + dateResiliation + ", signalement="
-				+ signalement + ", droits=" + droits + ", MotifResiliation=" + MotifResiliation + "]";
+				+ ", dateInscription=" + dateInscription + ", dateResiliation=" + dateResiliation + ", listeAnnonce="
+				+ listeAnnonce + ", droits=" + droits + ", MotifResiliation=" + MotifResiliation + "]";
 	}
 
-
-	
 	
 }

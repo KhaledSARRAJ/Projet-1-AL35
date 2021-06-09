@@ -42,7 +42,4 @@ public class Annonce implements Serializable{
 	@JoinColumn(referencedColumnName = "id")
 	private Utilisateur utilisateur;	
 	
-	@OneToMany
-	@JoinColumn(referencedColumnName = "id")
-	private List<Signalement> signalement;
 }

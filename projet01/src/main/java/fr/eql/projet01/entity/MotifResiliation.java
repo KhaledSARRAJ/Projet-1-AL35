@@ -1,7 +1,6 @@
 package fr.eql.projet01.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,7 +17,9 @@ import lombok.Setter;
 @Entity
 @Getter @Setter @NoArgsConstructor 
 public class MotifResiliation implements Serializable {
-
+	private static final long serialVersionUID = 1L;
+	public static final String NAME = "motif de résiliation";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;

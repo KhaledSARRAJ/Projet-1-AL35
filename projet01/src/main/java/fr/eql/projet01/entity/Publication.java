@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,7 +25,9 @@ import lombok.Setter;
 @Entity
 @Getter @Setter @NoArgsConstructor 
 public class Publication implements Serializable{
-
+	private static final long serialVersionUID = 1L;
+	public static final String NAME = "publication";
+	
 	@Override
 	public String toString() {
 		return "Publication [id=" + id + ", titre=" + titre + ", texte=" + texte + ", dateDebut=" + dateDebut
@@ -38,12 +42,15 @@ public class Publication implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date dateDebut;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "publicationSupport", cascade = CascadeType.ALL)
 	private List<Support> support;
-		
+	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "listPublicationTheme", cascade = CascadeType.ALL)
 	private List<Theme> theme;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Utilisateur utilisateur;	

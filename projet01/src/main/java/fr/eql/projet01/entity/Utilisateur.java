@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -32,6 +31,8 @@ import lombok.Setter;
 @Entity
 @Getter @Setter @NoArgsConstructor 
 public class Utilisateur implements Serializable{
+	private static final long serialVersionUID = 1L;
+	public static final String NAME = "utilisateur";	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,13 +62,13 @@ public class Utilisateur implements Serializable{
 	private Date dateInscription;
 	@Temporal(TemporalType.DATE)
 	private Date dateResiliation;
-		
+	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="utilisateur")
 	private List<Publication> listPublication;
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="utilisateur")
 	private List<Annonce> listeAnnonce;
-		
+	
 	@OneToMany(mappedBy="follower")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Abonnement> Listefollower;

@@ -4,13 +4,12 @@ package fr.eql.projet01.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import fr.eql.projet01.dao.UtilisateurRepository;
 import fr.eql.projet01.entity.Utilisateur;
-
+import fr.eql.projet01.exception.ResourceNotFoundException;
 
 @Service 
 @Transactional
@@ -18,9 +17,6 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 
 	@Autowired 
 	private UtilisateurRepository utilisateurRepository;
-	
-	@Autowired
-    private PasswordEncoder passwordEncoder;
 	
 	@Override
 	public Utilisateur rechercheUtiParId(long id) {
@@ -55,8 +51,18 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	public Utilisateur findInfoUtilisateur(long id) {
 		return utilisateurRepository.findById(id).orElse(null);
 	}
+
+	
+	@Override
+	public Utilisateur findOne(Long id) throws ResourceNotFoundException {
+		if(!utilisateurRepository.existsById(id))	
+			throw new ResourceNotFoundException("Utilisateur introuvable avec cet id : "+id);
+		return utilisateurRepository.findById(id).get();
+	}
+
 	@Override
 	public List<Utilisateur> rechercherUtilisateur() {
 		return utilisateurRepository.findAll();
 	}
 }
+

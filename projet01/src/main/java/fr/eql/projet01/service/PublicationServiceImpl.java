@@ -31,7 +31,6 @@ public class PublicationServiceImpl implements PublicationService {
 
 	@Override
 	public List<Publication> findPublicationByUser(Utilisateur u) {
-		// TODO Auto-generated method stub
 		return publicationRepository.findByUtilisateur(u);
 	}
 
@@ -76,20 +75,17 @@ public class PublicationServiceImpl implements PublicationService {
 
 	@Override
 	public Page<Publication> findByTitreIgnoreCaseContains(String mc, Pageable pageable) {
-		// TODO Auto-generated method stub
 		return publicationRepository.findByTitreIgnoreCaseContains( mc,  pageable);
 	}
 
 
 
 	public Page<Publication> findByUtilisateurAndTitreIgnoreCaseContains(Utilisateur utilisateur, String titre, Pageable pageable) {
-		// TODO Auto-generated method stub
 		return publicationRepository.findByUtilisateurAndTitreIgnoreCaseContains(utilisateur, titre,pageable);
 	}
 
 //	@Override
 //	public List<Publication> findBySupportDetailsName(String name) {
-//		// TODO Auto-generated method stub
 //		return productRepository.findBySupportDetailsName( name);
 //	}
 

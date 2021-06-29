@@ -1,6 +1,6 @@
 package fr.eql.projet01.entity;
 
-import java.util.Date;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -16,7 +16,9 @@ import lombok.Setter;
 
 @Entity
 @Getter @Setter @NoArgsConstructor 
-public class Sexe {
+public class Sexe implements Serializable {
+	private static final long serialVersionUID = 1L;
+	public static final String NAME = "sexe";	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

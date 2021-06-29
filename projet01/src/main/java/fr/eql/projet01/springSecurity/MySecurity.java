@@ -7,7 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 public class MySecurity {
 	@Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); //By default since spring 5
-    }
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder(); //By default since spring 5
+	}	
 }

@@ -178,7 +178,7 @@ public class InitDataSet {
 		addThemePub(1, 2);
 		insertSupport(null, "Image", "Joconde.jpg");
 		addSupportPub(1, 1);
-
+		
 		insertPublication(null, "Le Radeau de La Méduse", "Le Radeau de La Méduse est une peinture à l'huile sur toile, réalisée entre 1818 et 1819 par le peintre et lithographe romantique français Théodore Géricault","2021-01-15", utilisateur1);
 		addThemePub(2, 2);
 		insertSupport(null, "Image", "radeau-meduse.jpg");
@@ -246,15 +246,17 @@ public class InitDataSet {
 		insertAnnonce(null, "Recherche modeles", "Recherche model pour réaliser des portraits en peinture", 15.0,
 				"2020-06-07", utilisateur4);
 		addThemeAnnonce(1, 2);
+		addSupportAnnonce(1, 1);
 
 		insertAnnonce(null, "Fugurants", "Je recherche des figurants pour cours métrages, sur l’époque de Napoléon. ",
 				0.0, "2019-06-04", utilisateur5);
 		addThemeAnnonce(2, 6);
-
+		addSupportAnnonce(1, 2);
+		
 		insertAnnonce(null, "Appareil photo anciens", "Je recherche d’ancien appareil photo argentique ", 0.0,
 				"2021-02-15", utilisateur5);
 		addThemeAnnonce(3, 6);
-
+		addSupportAnnonce(1, 3);
 	}
 
 	private Ville insertVille(Long id, String codePostal, String localite, String pays) {
@@ -417,7 +419,4 @@ public class InitDataSet {
 		s.setAnnonceSupport(a);
 		supportRepository.save(s);
 	}
-
-
-
 }

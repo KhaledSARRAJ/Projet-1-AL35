@@ -30,9 +30,9 @@ body {
 				</p>
 			</div>
 
-			<div class="card-body">
-				<table th:object="${utilisateur}" class="table table-hover">
-				<!--  	<tr>
+			<div class="card-body" th:object="${utilisateur}">
+				<table  class="table table-hover">
+					<!--  	<tr>
 						<td><label>Id</label></td>
 						<td th:utext="*{id}" /></td>
 					</tr> -->
@@ -93,7 +93,9 @@ body {
 						<td th:utext="*{dateInscription}" /></td>
 					</tr>
 				</table>
-
+				<iframe width="100%" height="450" style="border: 0" loading="lazy"	allowfullscreen
+					th:src="'https://www.google.com/maps/embed/v1/place?key=AIzaSyCdUCHul7-8GSwK-Ko23Zef7XZhTV-VLqI&q='+*{rue}+', '+*{ville.codePostale}+' '+*{ville.localite}+', ' +*{ville.pays}">
+				</iframe>
 			</div>
 		</div>
 

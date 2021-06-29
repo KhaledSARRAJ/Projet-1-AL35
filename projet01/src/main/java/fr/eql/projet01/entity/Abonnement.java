@@ -14,6 +14,8 @@ import javax.persistence.MapsId;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -36,6 +38,7 @@ public class Abonnement implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="following_id")
+	@JsonIgnore
 	private Utilisateur following;
 	
 	

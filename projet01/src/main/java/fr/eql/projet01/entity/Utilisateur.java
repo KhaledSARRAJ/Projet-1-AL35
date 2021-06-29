@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -21,6 +20,8 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -63,17 +64,21 @@ public class Utilisateur implements Serializable{
 	private Date dateResiliation;
 		
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="utilisateur")
+	@JsonIgnore
 	private List<Publication> listPublication;
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="utilisateur")
+	@JsonIgnore
 	private List<Annonce> listeAnnonce;
 		
 	@OneToMany(mappedBy="follower")
 	@LazyCollection(LazyCollectionOption.FALSE)
+	@JsonIgnore
 	private List<Abonnement> Listefollower;
 	
 	@OneToMany(mappedBy="following")
 	@LazyCollection(LazyCollectionOption.FALSE)
+	@JsonIgnore
 	private List<Abonnement> Listefollowing; 
 	
 	@ManyToOne

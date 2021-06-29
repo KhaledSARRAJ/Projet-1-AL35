@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,6 +29,7 @@ public class Ville implements Serializable{
 	private String pays;
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="ville")
+	@JsonIgnore
 	private List<Utilisateur> listeUtilisateur;
 
 }

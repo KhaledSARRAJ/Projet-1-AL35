@@ -52,6 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable()
 		.authorizeRequests()
 		.antMatchers("/", "/**/*.css", "/favicon.ico", "/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg", "/**/*.css", "/**/*.js", "/home", "/about").permitAll()
+		.antMatchers("/chat-api-rest/**").permitAll()
 		.antMatchers("/session-end").permitAll()
 		.antMatchers("/admin/**").hasAnyRole("ADMIN")
 		.antMatchers("/user/**").hasAnyRole("USER")

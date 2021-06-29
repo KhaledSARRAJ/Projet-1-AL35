@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,5 +27,6 @@ public class Droits implements Serializable {
 	private String typeDroit;
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="droits")
+	@JsonIgnore
 	private List<Utilisateur> listeUtilisateur;
 }

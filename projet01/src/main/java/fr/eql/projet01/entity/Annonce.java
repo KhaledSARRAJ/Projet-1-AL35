@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -40,6 +42,7 @@ public class Annonce implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
+	@JsonIgnore
 	private Utilisateur utilisateur;	
 	
 }

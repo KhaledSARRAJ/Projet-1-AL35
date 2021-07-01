@@ -31,14 +31,14 @@ import fr.eql.projet01.service.SupportService;
 import fr.eql.projet01.ui.request.SupportRequest;
 
 @RestController
-@RequestMapping(value="/aec-api-rest/supports", headers="Accept=application/json")
+@RequestMapping(value = "/aec-api-rest/supports", headers = "Accept=application/json")
 public class SupportRestController {
 	@Autowired
 	private SupportService supportService;
 	@Autowired
 	private AnnonceService annonceService;
 	protected final Logger log = LoggerFactory.getLogger(getClass());
-	
+
 	@GetMapping("/simpleListe")
 	public List<Support> getAll() {
 		return supportService.findAll();
@@ -54,41 +54,47 @@ public class SupportRestController {
 		Support result;
 		try {
 			result = supportService.findOne(id);
-	} catch (ResourceNotFoundException e) {
-			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.NOT_FOUND);
+		} catch (ResourceNotFoundException e) {
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.NOT_FOUND);
 		} catch (Exception e) {
-			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Object>(result,HttpStatus.OK);
+		return new ResponseEntity<Object>(result, HttpStatus.OK);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> update(@RequestBody(required = true) SupportRequest supportRequest, @PathVariable(required = true) Long id) {
+	public ResponseEntity<?> update(@RequestBody(required = true) SupportRequest supportRequest,
+			@PathVariable(required = true) Long id) {
 		Support saved;
 		try {
 			Assert.notNull(supportRequest, "Ne peut pas être null.");
 			Assert.notNull(supportRequest.getId(), "L'identifiant ne peut être null");
-			Assert.isTrue(id.equals(supportRequest.getId()), "L'id de l'url ne correspond pas à celui de l'objet envoyé.");
+			Assert.isTrue(id.equals(supportRequest.getId()),
+					"L'id de l'url ne correspond pas à celui de l'objet envoyé.");
 			Support support = supportService.findOne(supportRequest.getId());
 			support.setTypeSupport(supportRequest.getTypeSupport());
 			support.setChemin(supportRequest.getChemin());
 			support.setImage(supportRequest.getImage());
-			support.setAnnonceSupport(annonceService.findOne(supportRequest.getAnnonceId()));
+			if (supportRequest.getAnnonceId()!=null) {
+				support.setAnnonceSupport(annonceService.findOne(supportRequest.getAnnonceId()));
+			} else {
+				support.setAnnonceSupport(null);
+			}
 			saved = supportService.save(support);
-		}catch(ResourceNotFoundException e) {
-			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.NOT_FOUND);
-		}catch(NotValidObjectException e) {
+		} catch (ResourceNotFoundException e) {
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.NOT_FOUND);
+		} catch (NotValidObjectException e) {
 			return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
-		} catch(Exception e) {
-			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		} catch (Exception e) {
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Object>(saved,HttpStatus.OK);
+		return new ResponseEntity<Object>(saved, HttpStatus.OK);
 	}
 
 	@PostMapping
-	public ResponseEntity<?> create(@RequestBody(required = true) SupportRequest supportRequest){
+	public ResponseEntity<?> create(@RequestBody(required = true) SupportRequest supportRequest) {
 		Support s;
 		try {
 			Assert.isNull(supportRequest.getId(), "L'identifiant doit être null");
@@ -103,7 +109,7 @@ public class SupportRestController {
 			return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
 		} catch (ResourceNotFoundException e) {
 			return new ResponseEntity<Object>(HttpStatus.FORBIDDEN);
-		}catch(IllegalArgumentException e) {
+		} catch (IllegalArgumentException e) {
 			return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);
 		}
 		return new ResponseEntity<Object>(s, HttpStatus.CREATED);
@@ -111,17 +117,17 @@ public class SupportRestController {
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) throws AecServiceException {
-		Map<String,Object> mapRes = new HashMap<>();
+		Map<String, Object> mapRes = new HashMap<>();
 		try {
 			supportService.delete(id);
-			mapRes.put("message", "Support bien supprimée pour l'id "+id);
+			mapRes.put("message", "Support bien supprimée pour l'id " + id);
 		} catch (ResourceNotFoundException e) {
-			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.NOT_FOUND);
 		} catch (IllegalOperationException e) {
-			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.FORBIDDEN);
-		} catch(Exception e) {
-			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.FORBIDDEN);
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.FORBIDDEN);
+		} catch (Exception e) {
+			return new ResponseEntity<Object>(e.getMessage(), HttpStatus.FORBIDDEN);
 		}
-		return new ResponseEntity<Object>(mapRes,HttpStatus.OK);
+		return new ResponseEntity<Object>(mapRes, HttpStatus.OK);
 	}
 }

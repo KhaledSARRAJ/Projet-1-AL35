@@ -73,7 +73,11 @@ public class SupportRestController {
 			support.setTypeSupport(supportRequest.getTypeSupport());
 			support.setChemin(supportRequest.getChemin());
 			support.setImage(supportRequest.getImage());
-			support.setAnnonceSupport(annonceService.findOne(supportRequest.getAnnonceId()));
+			if (supportRequest.getAnnonceId()!=null) {
+				support.setAnnonceSupport(annonceService.findOne(supportRequest.getAnnonceId()));
+			} else {
+				support.setAnnonceSupport(null);
+			}
 			saved = supportService.save(support);
 		}catch(ResourceNotFoundException e) {
 			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.NOT_FOUND);

@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header card bg-info text-white">
+            <h2>Detail d'une annonce</h2>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <tr>
+                    <td width="30%"><label>Id :</label></td>
+                    <td width="70%"><b>{{annonceResponse?.id}}</b></td>
+                </tr>
+                <tr>
+                    <td><label>Titre :</label></td>
+                    <td><b>{{annonceResponse?.titre}}</b></td>
+                </tr>
+                <tr>
+                    <td><label>Texte :</label></td>
+                    <td><b>{{annonceResponse?.texte}}</b></td>
+                </tr>
+                <tr>
+                    <td><label>Prix :</label></td>
+                    <td><b>{{annonceResponse?.prix}}</b></td>
+                </tr>
+                <tr>
+                    <td><label>Date de parution :</label></td>
+                    <td><b>{{annonceResponse?.dateParution}}</b></td>
+                </tr>
+                <tr>
+                    <td><label>Prénom de l'auteur :</label></td>
+                    <td><b>{{annonceResponse?.prenomDupublisher}}</b></td>
+                </tr>
+            </table>
+            <div >
+                <img *ngFor="let support of annonceResponse?.listeDesSupports" src="http://localhost:8085/{{support.chemin}}" width="200" height="120" border="2"/>
+            </div>
+        </div>
+        <div class="card-footer">
+            <a (click)="goBack()" class="btn btn-danger">Retour</a>
+        </div>
+    </div>
+    {{message}}
+</div>

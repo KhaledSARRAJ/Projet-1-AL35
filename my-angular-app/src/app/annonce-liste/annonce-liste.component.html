@@ -1,0 +1,32 @@
+<div class="container">
+
+    <div class="card">
+        <div class="card-header card bg-info text-white">
+            <h2>liste des annonces</h2>
+            <!-- <p><a class="btn btn-success" (click)="ajoutDevise()">+</a></p> -->
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Titre</th>
+                        <th>Prix</th>
+                        <th>Date de parution</th>
+                        <th>Détail</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let a of listeAnnoncesSimple">
+                        <td>{{a.id}}</td>
+                        <td>{{a.titre}}</td>
+                        <td>{{a.prix}}</td>
+                        <td>{{a.dateParution}}</td>
+                        <td><a class="btn btn-info" (click)="detailAnnonce(a)">Détail</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {{messageErr}}
+</div>

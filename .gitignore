@@ -1,1 +1,57 @@
-/.metadata/
+#
+# Project specific excludes
+#
+
+#
+# Default excludes
+#
+
+*/node_modules
+**/node_modules
+
+# Binaries
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.war
+*.ear
+*.sar
+*.class
+*.metadata
+*.recommenders
+
+# Maven 
+target/
+
+# IntelliJ project files 
+*.iml
+*.iws
+*.ipr
+.idea/
+
+# eclipse project file
+.settings/
+.classpath
+.project
+.target
+
+# OS
+.DS_Store
+
+# Misc
+*.swp
+release.properties
+pom.xml.releaseBackup
+pom.xml.tag
+
+/catalina.policy
+/web.xml
+/tomcat-users.xml
+/server.xml
+/context.xml
+/catalina.properties

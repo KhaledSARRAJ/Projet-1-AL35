@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="card">
+        <div class="card-header card bg-info text-white">
+            <h2>Ajout d'une annonce</h2>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <tr>
+                    <td width="30%"><label>Titre :</label></td>
+                    <td width="70%"><input type="text" [(ngModel)]="annonceRequest!.titre" /></td>
+                </tr>
+                <tr>
+                    <td><label>Texte :</label></td>
+                    <td><input type="text" [(ngModel)]="annonceRequest!.texte" /></td>
+                </tr>
+                <tr>
+                    <td><label>Prix :</label></td>
+                    <td><input type="number" [(ngModel)]="annonceRequest!.prix" /></td>
+                </tr>
+            </table>
+        </div>
+        <div class="card-footer">
+            <a (click)="ajoutAnnonce()" class="btn btn-success">Valider</a>
+            <a routerLink="/ngr-annonce-liste-uti" class="btn btn-danger">Retour</a>
+        </div>
+    </div>
+    {{messageErr}}
+</div>

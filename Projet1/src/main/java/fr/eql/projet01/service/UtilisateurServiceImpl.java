@@ -64,5 +64,12 @@ public class UtilisateurServiceImpl implements UtilisateurService {
 	public List<Utilisateur> rechercherUtilisateur() {
 		return utilisateurRepository.findAll();
 	}
+
+	@Override
+	public void deleteById(Long id) {
+	     if (id == 0) throw new IllegalArgumentException("Id should not be null");
+	     utilisateurRepository.deleteById(id); 
 }
+}
+
 

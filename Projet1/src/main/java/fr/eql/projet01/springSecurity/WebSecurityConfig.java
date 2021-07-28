@@ -42,7 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/aec-api-rest/themes/**").permitAll()
 		.antMatchers("/chat-api-rest/**").permitAll()
 		.antMatchers("/administrateur/**").permitAll()
-		.antMatchers("/admin/**").hasAnyRole("ADMIN")
+		.antMatchers("http://localhost:4300/**/**").hasAnyRole("ADMIN")
 		.antMatchers("/user/**").hasAnyRole("USER")
 		.anyRequest().authenticated()
 		.and()

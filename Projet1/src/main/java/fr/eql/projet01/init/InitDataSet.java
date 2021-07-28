@@ -126,7 +126,7 @@ public class InitDataSet {
 				"2018-02-15", null, Paris3, null, droitsUtilisateur);
 		Utilisateur utilisateur2 = insertUtilisateur(null, "Lola", "Vercammen", "1980-10-14", sexeFemme,
 				"lola.vercammen@mail.com", "0603010004", "10 Rue Edmond Rousse", null, "lola", passwordEncoder.encode("lola"), "2018-02-15", null,
-				Paris4, null, droitsUtilisateur);
+				Paris4, null, droitsAdmin);
 		Utilisateur utilisateur3 = insertUtilisateur(null, "Pénélope", "Descamps", "1960-12-14", sexeFemme,
 				"penelope.descamps@mail.com", "0603010006", "75 Boulevard Arago", null, "penelope", passwordEncoder.encode("penelope"),
 				"2018-02-15", null, Marseille, null, droitsUtilisateur);

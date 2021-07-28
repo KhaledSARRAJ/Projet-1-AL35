@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import fr.eql.projet01.beans.SignalementBean;
 import fr.eql.projet01.entity.Abonnement;
 import fr.eql.projet01.entity.Annonce;
 import fr.eql.projet01.entity.Publication;
@@ -26,6 +27,7 @@ import fr.eql.projet01.entity.Utilisateur;
 import fr.eql.projet01.exception.AecServiceException;
 import fr.eql.projet01.exception.IllegalOperationException;
 import fr.eql.projet01.exception.ResourceNotFoundException;
+import fr.eql.projet01.proxies.GestionSignalementProxy;
 import fr.eql.projet01.service.AbonnementService;
 import fr.eql.projet01.service.AnnonceService;
 import fr.eql.projet01.service.PublicationService;
@@ -33,7 +35,7 @@ import fr.eql.projet01.service.SupportService;
 import fr.eql.projet01.service.UtilisateurService;
 
 @RestController
-@CrossOrigin (origins = { "http://localhost:4200"}) 
+@CrossOrigin (origins = { "http://localhost:4300"}) 
 @RequestMapping(value = "/administrateur", headers = "Accept=application/json")
 public class AdministrateurController {
 
@@ -47,7 +49,7 @@ public class AdministrateurController {
 	private AbonnementService aboService;
 	@Autowired
 	private SupportService supportService;
-
+	
 	// Ici l'admin peut voir tous les utilisateurs inscrits
 	//http://localhost:8085/administrateur/users
 	@GetMapping("/users")
@@ -56,7 +58,6 @@ public class AdministrateurController {
 		utilisateurs = utilisateurService.rechercherUtilisateur();
 		return utilisateurs;
 	}
-
 	// Ici l'admin peut voir tous les publications
 	//http://localhost:8085/administrateur/publications
 	@GetMapping("/publications")
@@ -118,13 +119,44 @@ public class AdministrateurController {
 		return listeAbo;
 
 	}
-	
+
+
 	@DeleteMapping("/deletePublications/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") Long id) throws AecServiceException {
 		Map<String,Object> mapRes = new HashMap<>();
 		try {
 			publicationService.deleteById(id);
+			mapRes.put("message", "publication bien supprimée pour l'id "+id);
+		} catch (ResourceNotFoundException e) {
+			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.NOT_FOUND);
+		} catch (IllegalOperationException e) {
+			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.FORBIDDEN);
+		} catch(Exception e) {
+			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.FORBIDDEN);
+		}
+		return new ResponseEntity<Object>(mapRes,HttpStatus.OK);
+	}
+	@DeleteMapping("/deleteAnnonce/{id}")
+	public ResponseEntity<?> deleteAnnonce(@PathVariable("id") Long id) throws AecServiceException {
+		Map<String,Object> mapRes = new HashMap<>();
+		try {
+			annoceService.delete(id);
 			mapRes.put("message", "Annonce bien supprimée pour l'id "+id);
+		} catch (ResourceNotFoundException e) {
+			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.NOT_FOUND);
+		} catch (IllegalOperationException e) {
+			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.FORBIDDEN);
+		} catch(Exception e) {
+			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.FORBIDDEN);
+		}
+		return new ResponseEntity<Object>(mapRes,HttpStatus.OK);
+	}
+	@DeleteMapping("/deleteUsers/{id}")
+	public ResponseEntity<?> deleteUser(@PathVariable("id") Long id) throws AecServiceException {
+		Map<String,Object> mapRes = new HashMap<>();
+		try {
+			utilisateurService.deleteById(id);
+			mapRes.put("message", "User bien supprimée pour l'id "+id);
 		} catch (ResourceNotFoundException e) {
 			return new ResponseEntity<Object>(e.getMessage(),HttpStatus.NOT_FOUND);
 		} catch (IllegalOperationException e) {

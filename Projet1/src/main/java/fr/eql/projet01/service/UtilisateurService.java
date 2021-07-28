@@ -13,4 +13,5 @@ public interface UtilisateurService {
 	Utilisateur findInfoUtilisateur(long id);
 	Utilisateur findOne(Long id) throws ResourceNotFoundException;
 	List<Utilisateur> rechercherUtilisateur();
+	void deleteById(Long id);
 }

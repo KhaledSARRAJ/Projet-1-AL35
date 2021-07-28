@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,6 +32,7 @@ import fr.eql.aec.service.SignalementService;
 
 @RestController
 @RequestMapping("/signalements")
+@CrossOrigin (origins = { "http://localhost:4300"}) 
 public class SignalementRestController {
 	@Autowired
 	private SignalementService signalementService;
@@ -42,7 +44,7 @@ public class SignalementRestController {
 	public List<Signalement> getAll() {
 		return signalementService.findAll();
 	}
-	
+	  
 	@GetMapping("/countForMe/{type}/{identifiant}")
 	public Long countForMe(@PathVariable(required = true) String type, @PathVariable(required = true) Long identifiant) {
 		return signalementService.countByTypeAndIdentifiant(type, identifiant);

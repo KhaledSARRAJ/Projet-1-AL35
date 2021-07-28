@@ -64,11 +64,9 @@ public class Utilisateur implements Serializable{
 	private Date dateResiliation;
 		
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="utilisateur")
-	@JsonIgnore
 	private List<Publication> listPublication;
 	
 	@OneToMany(fetch=FetchType.LAZY,mappedBy="utilisateur")
-	@JsonIgnore
 	private List<Annonce> listeAnnonce;
 		
 	@OneToMany(mappedBy="follower")

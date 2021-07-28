@@ -1,0 +1,55 @@
+<html>
+
+<head>
+	<title>title</title>
+</head>
+
+<body>
+	
+	<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Projet 1</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mur.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+   
+    <meta charset="UTF-8">
+<title th:text="#{project.title}"></title>
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css} " />
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<style>
+body {
+	padding-top: 100px;
+}
+</style>
+
+</head>
+<body>
+
+<nav th:insert="fragments/navbar :: nav_fragment"></nav>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>Server indisponible</h1>
+        <div th:inline="text">Bonjour '[[${#httpServletRequest.remoteUser}]]' 
+                <p th:text=${message} class="text"></p></div>
+	</div>
+	<div class="bottom">
+							<a th:href="@{/home}">Poursuivre vers l'accueil</a>
+						</div>
+
+</div>
+<!-- /.container -->
+
+<footer th:insert="fragments/footer :: footer_fragment"></footer>
+
+</body>
+</html>
+</body>
+
+</html>

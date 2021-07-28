@@ -1,3 +1,4 @@
+  
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -50,9 +51,15 @@ body {
 						</div>
 						<br />
 						<p th:text=${publication.texte} class="text"></p>
+						<br />
+						<p class="text" th:inline="text"> [[${publication.nbSignalement}]] signalements a ce jour</p>
 						<div class="bottom">
 							<a th:href="'profilUti?id='+${publication.utilisateur.id}">Accéder
 								au profil</a>
+						</div>
+						<br/>
+						<div class="bottom">
+							<a th:href="'signalement?idpublication='+${publication.id}+'&userid='+${user.id}">Signaler la publication</a>
 						</div>
 					</section>
 				</div>

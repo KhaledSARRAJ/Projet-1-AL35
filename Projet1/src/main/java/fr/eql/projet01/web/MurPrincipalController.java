@@ -14,7 +14,6 @@ import fr.eql.projet01.entity.Publication;
 import fr.eql.projet01.entity.Support;
 import fr.eql.projet01.entity.Utilisateur;
 import fr.eql.projet01.service.AbonnementService;
-import fr.eql.projet01.service.PublicationService;
 import fr.eql.projet01.service.SupportService;
 import fr.eql.projet01.service.UtilisateurService;
 
@@ -25,63 +24,55 @@ public class MurPrincipalController {
 
 	@Autowired
 	private AbonnementService aboService;
-	
+
 	@Autowired
 	private UtilisateurService utilisateurService; 
-	
-	@Autowired
-	private PublicationService publicationService;
-	
+
 	@Autowired
 	private SupportService supportService;
-	
 
-	
-	
-//request param sera l'utilisateur connecté
+	//request param sera l'utilisateur connecté
 	@GetMapping("/mur")
-    public String AffichePublications(Model model,@RequestParam("id")long id) {
+	public String AffichePublications(Model model,@RequestParam("id")long id) {
 		Utilisateur uti = utilisateurService.findInfoUtilisateur(id);
-	    List<Abonnement> listeAbo = aboService.findAllFollowerByUtilisateur(uti);
-	    List<Utilisateur> listUtilisateur = new ArrayList<Utilisateur>();
-	    List<Publication> listPublication = new ArrayList<Publication>();
-	    
-	    for (Abonnement abo : listeAbo) {
-	    	Utilisateur a = abo.getFollowing();
-	    	listUtilisateur.add(a);
-	    }
-	    
-	    for (Utilisateur u : listUtilisateur) {
-	    	List<Publication> p = u.getListPublication();
-	    	 for(Publication m: p) {
-	      	    	List<Support> listSupport = supportService.findSupportByPublication(m);
-	      	    	m.setSupport(listSupport);
-	              }
-	    	listPublication.addAll(p);
-	    }
-	   
-	    model.addAttribute("user", utilisateurService.findInfoUtilisateur(id));
-	    if(listeAbo!=null && !listeAbo.isEmpty()){
-	          model.addAttribute("uti",uti);
-              model.addAttribute("listeAbo",listeAbo);
-              model.addAttribute("listPublication",listPublication);
-            
-	    }
-        return "mur"; 
-    }
-	
+		List<Abonnement> listeAbo = aboService.findAllFollowerByUtilisateur(uti);
+		List<Utilisateur> listUtilisateur = new ArrayList<Utilisateur>();
+		List<Publication> listPublication = new ArrayList<Publication>();
+
+		for (Abonnement abo : listeAbo) {
+			Utilisateur a = abo.getFollowing();
+			listUtilisateur.add(a);
+		}
+
+		for (Utilisateur u : listUtilisateur) {
+			List<Publication> p = u.getListPublication();
+			for(Publication m : p) {
+				List<Support> listSupport = supportService.findSupportByPublication(m);
+				m.setSupport(listSupport);
+			}
+			listPublication.addAll(p);
+		}
+
+		model.addAttribute("user", utilisateurService.findInfoUtilisateur(id));
+		if(listeAbo!=null && !listeAbo.isEmpty()){
+			model.addAttribute("uti",uti);
+			model.addAttribute("listeAbo",listeAbo);
+			model.addAttribute("listPublication",listPublication);
+		}
+		return "mur"; 
+	}
 
 	@GetMapping("/profilUti")
 	public String affInfoUti(Model model, @RequestParam("id") Long id) {
-		
+
 		if (id != null) {
 			Utilisateur uti = utilisateurService.rechercheUtiParId(id);
 			if (uti != null) {
 				List<Publication> p = uti.getListPublication();
-				 for(Publication m: p) {
-		      	    	List<Support> listSupport = supportService.findSupportByPublication(m);
-		      	    	m.setSupport(listSupport);
-		              }
+				for(Publication m: p) {
+					List<Support> listSupport = supportService.findSupportByPublication(m);
+					m.setSupport(listSupport);
+				}
 				model.addAttribute("utilisateur", uti);
 				model.addAttribute("publications", p);
 				return "ProfilAutreUtilisateur";
@@ -92,6 +83,4 @@ public class MurPrincipalController {
 			return "profilErreur";
 		}
 	}
-    
-    
 }

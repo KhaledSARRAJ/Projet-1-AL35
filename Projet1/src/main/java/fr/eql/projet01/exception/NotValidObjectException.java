@@ -8,10 +8,18 @@ public class NotValidObjectException extends AecServiceException {
 	private List<String> errors;
 	
 	public NotValidObjectException() {
-		this.errors = new ArrayList<String>();
+		this.setErrors(new ArrayList<String>());
 	}
 	
 	public NotValidObjectException(List<String> errors) {
+		this.setErrors(errors);
+	}
+
+	public List<String> getErrors() {
+		return errors;
+	}
+
+	public void setErrors(List<String> errors) {
 		this.errors = errors;
 	}
 }

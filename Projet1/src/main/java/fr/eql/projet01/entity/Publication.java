@@ -28,12 +28,6 @@ public class Publication implements Serializable{
 	private static final long serialVersionUID = 1L;
 	public static final String NAME = "publication";
 	
-	@Override
-	public String toString() {
-		return "Publication [id=" + id + ", titre=" + titre + ", texte=" + texte + ", dateDebut=" + dateDebut
-				+ ", utilisateur=" + utilisateur + "]";
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -41,6 +35,7 @@ public class Publication implements Serializable{
 	private String texte;
 	@Temporal(TemporalType.DATE)
 	private Date dateDebut;
+	private Long nbSignalement=0L;	
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "publicationSupport", cascade = CascadeType.ALL)
@@ -54,6 +49,12 @@ public class Publication implements Serializable{
 	@ManyToOne
 	@JoinColumn(referencedColumnName = "id")
 	private Utilisateur utilisateur;	
+	
+	@Override
+	public String toString() {
+		return "Publication [id=" + id + ", titre=" + titre + ", texte=" + texte + ", nbSignalement=" + nbSignalement + ",  dateDebut=" + dateDebut
+				+ ", utilisateur=" + utilisateur + "]";
+	}
 	
 	public Publication(String titre, String texte) {
 		super();

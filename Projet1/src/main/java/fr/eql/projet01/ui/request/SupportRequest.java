@@ -15,4 +15,5 @@ public class SupportRequest {
 	@Lob // save files to db
 	private byte[] image;
 	private Long annonceId;
+	private Long publicationId;
 }

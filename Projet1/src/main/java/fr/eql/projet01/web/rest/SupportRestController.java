@@ -27,6 +27,7 @@ import fr.eql.projet01.exception.IllegalOperationException;
 import fr.eql.projet01.exception.NotValidObjectException;
 import fr.eql.projet01.exception.ResourceNotFoundException;
 import fr.eql.projet01.service.AnnonceService;
+import fr.eql.projet01.service.PublicationService;
 import fr.eql.projet01.service.SupportService;
 import fr.eql.projet01.ui.request.SupportRequest;
 
@@ -37,6 +38,9 @@ public class SupportRestController {
 	private SupportService supportService;
 	@Autowired
 	private AnnonceService annonceService;
+	@Autowired
+	private PublicationService publicationService;
+	
 	protected final Logger log = LoggerFactory.getLogger(getClass());
 	
 	@GetMapping("/simpleListe")
@@ -73,10 +77,17 @@ public class SupportRestController {
 			support.setTypeSupport(supportRequest.getTypeSupport());
 			support.setChemin(supportRequest.getChemin());
 			support.setImage(supportRequest.getImage());
+			// controle si l'annonce existe
 			if (supportRequest.getAnnonceId()!=null) {
 				support.setAnnonceSupport(annonceService.findOne(supportRequest.getAnnonceId()));
 			} else {
 				support.setAnnonceSupport(null);
+			}
+			// controle si la publication existe
+			if (supportRequest.getPublicationId()!=null) {
+				support.setPublicationSupport(publicationService.findById(supportRequest.getPublicationId()));
+			} else {
+				support.setPublicationSupport(null);
 			}
 			saved = supportService.save(support);
 		}catch(ResourceNotFoundException e) {
@@ -101,7 +112,18 @@ public class SupportRestController {
 			support.setTypeSupport(supportRequest.getTypeSupport());
 			support.setChemin(supportRequest.getChemin());
 			support.setImage(supportRequest.getImage());
-			support.setAnnonceSupport(annonceService.findOne(supportRequest.getAnnonceId()));
+			// controle si l'annonce existe
+			if (supportRequest.getAnnonceId()!=null) {
+				support.setAnnonceSupport(annonceService.findOne(supportRequest.getAnnonceId()));
+			} else {
+				support.setAnnonceSupport(null);
+			}
+			// controle si la publication existe
+			if (supportRequest.getPublicationId()!=null) {
+				support.setPublicationSupport(publicationService.findById(supportRequest.getPublicationId()));
+			} else {
+				support.setPublicationSupport(null);
+			}
 			s = supportService.save(support);
 		} catch (NotValidObjectException e) {
 			return new ResponseEntity<Object>(HttpStatus.BAD_REQUEST);

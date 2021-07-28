@@ -115,6 +115,7 @@ public class DefaultController {
         rv.setUrl("/home");
         return rv; 
     }
+    
     @ModelAttribute("utilisateur")
     public Utilisateur addUtilisateurInModel() {
     	return new Utilisateur();

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,7 +41,7 @@ import fr.eql.projet01.ui.response.SupportResponse;
 import fr.eql.projet01.ui.response.ThemeResponse;
 
 @RestController
-@RequestMapping(value="/aec-api-rest/publications", headers="Accept=application.json")
+@RequestMapping(value="/aec-api-rest/publications", headers="Accept=application/json")
 public class PublicationRestController {
 	@Autowired
 	private PublicationService publicationService;
@@ -52,7 +53,7 @@ public class PublicationRestController {
 	private UtilisateurService utilisateurService;
 	protected final Logger log = LoggerFactory.getLogger(getClass());
 
-	@GetMapping("/infos")
+	@GetMapping("/allWithInfos")
 	public ResponseEntity<?> getAllWithInfos() {
 		ArrayList<PublicationResponse> publicationsResponse = new ArrayList<PublicationResponse>();
 		try {
@@ -92,7 +93,7 @@ public class PublicationRestController {
 		return new ResponseEntity<Object>(publicationsResponse,HttpStatus.OK);
 	}
 
-	@GetMapping("infos/{id}")
+	@GetMapping("publicationInfos/{id}")
 	public ResponseEntity<?> getOneWithInfos(@PathVariable(required = true) Long id) {
 		ArrayList<SupportResponse> tab = new ArrayList<SupportResponse>();
 		PublicationResponse publicationResponse = new PublicationResponse();
@@ -122,22 +123,22 @@ public class PublicationRestController {
 		return new ResponseEntity<Object>(publicationResponse,HttpStatus.OK);
 	}
 
-	@GetMapping("/simpleListe")
+	@GetMapping("/listePublications")
 	public List<Publication> getAll() {
 		return publicationService.getAll();
 	}
 
-	@GetMapping
+	@GetMapping("/titre")
 	public Page<Publication> findByTitreIgnoreCaseContains(String mc, Pageable page) {
 		return publicationService.findByTitreIgnoreCaseContains(mc, page);
 	}
 
-	@GetMapping
+	@GetMapping("/publiByUser")
 	public List<Publication> findPublicationByUser(Utilisateur u) {
 		return publicationService.findPublicationByUser(u);
 	}
 
-	@GetMapping
+	@GetMapping("/publiByUserTICC")
 	public Page<Publication> findByUtilisateurAndTitreIgnoreCaseContains(Utilisateur utilisateur, String titre, Pageable pageable){
 		return publicationService.findByTitreIgnoreCaseContains(titre, pageable);
 	}
@@ -155,7 +156,7 @@ public class PublicationRestController {
 		return new ResponseEntity<Object>(result,HttpStatus.OK);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/publications/{id}")
 	public ResponseEntity<?> getOne(@PathVariable(required=true) Long id) {
 		Publication result;
 		try {
@@ -167,7 +168,7 @@ public class PublicationRestController {
 		}
 		return new ResponseEntity<Object>(result,HttpStatus.OK);
 	}
-	
+	@PutMapping("/{id}")
 	public ResponseEntity<?> update(@RequestBody(required = true) PublicationRequest publicationRequest, @PathVariable(required = true) Long id) {
 		Publication saved;
 		try {

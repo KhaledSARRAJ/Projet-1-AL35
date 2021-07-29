@@ -1,13 +1,54 @@
-#
-# Project specific excludes
-#
+# See http://help.github.com/ignore-files/ for more about ignoring files.
 
-#
-# Default excludes
-#
+# compiled output
+/dist
+/tmp
+/out-tsc
+# Only exists if Bazel was run
+/bazel-out
 
-*/node_modules
-**/node_modules
+# dependencies
+/node_modules
+
+# profiling files
+chrome-profiler-events*.json
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+/catalina.policy
+/web.xml
+/tomcat-users.xml
+/server.xml
+/context.xml
+/catalina.properties
+
+# System Files
+.DS_Store
+Thumbs.db
 
 # Binaries
 *.7z
@@ -27,12 +68,9 @@
 
 # Maven 
 target/
+# Maven 
+target/
 
-# IntelliJ project files 
-*.iml
-*.iws
-*.ipr
-.idea/
 
 # eclipse project file
 .settings/
@@ -40,18 +78,3 @@ target/
 .project
 .target
 
-# OS
-.DS_Store
-
-# Misc
-*.swp
-release.properties
-pom.xml.releaseBackup
-pom.xml.tag
-
-/catalina.policy
-/web.xml
-/tomcat-users.xml
-/server.xml
-/context.xml
-/catalina.properties

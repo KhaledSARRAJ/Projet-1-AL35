@@ -20,7 +20,7 @@ export class PublicationTableComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<PublicationTableItem>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'titre', 'texte', 'dateDebut', 'action'];
+  displayedColumns = ['id', 'titre', 'nbSignalement', 'dateDebut', 'action'];
 
   constructor(private ds: DataserviceService,
               private utilsService: UtilsServiceService) {

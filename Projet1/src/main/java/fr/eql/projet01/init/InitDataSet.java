@@ -59,7 +59,7 @@ public class InitDataSet {
 	private SupportRepository supportRepository;
 
 	@Autowired
-    	private PasswordEncoder passwordEncoder;	
+	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private ThemeRepository themeRepository;
 
@@ -118,42 +118,42 @@ public class InitDataSet {
 		MotifResiliation motifResiliationMAJ = insertMotifResiliation(null, "Je n'aime pas les dernières mises à jour");
 		MotifResiliation motifResiliationInteret = insertMotifResiliation(null, "Ca ne m'intéresse plus");
 		MotifResiliation motifResiliationAutre = insertMotifResiliation(null, "Autre");
-		
-		//Utilisateurs
-		
+
+		// Utilisateurs
+
 		Utilisateur utilisateur1 = insertUtilisateur(null, "Bruno", "Berthiaume", "1970-12-14", SexeHomme,
-				"bruno.berthiaume@mail.com", "0699085253", "57 rue de Raymond Poincaré", null, "bruno", passwordEncoder.encode("bruno"),
-				"2018-02-15", null, Paris3, null, droitsUtilisateur);
+				"bruno.berthiaume@mail.com", "0699085253", "57 rue de Raymond Poincaré", null, "bruno",
+				passwordEncoder.encode("bruno"), "2018-02-15", null, Paris3, null, droitsUtilisateur);
 		Utilisateur utilisateur2 = insertUtilisateur(null, "Lola", "Vercammen", "1980-10-14", sexeFemme,
 				"lola.vercammen@mail.com", "0603010004", "10 Rue Edmond Rousse", null, "lola", passwordEncoder.encode("lola"), "2018-02-15", null,
 				Paris4, null, droitsAdmin);
-		Utilisateur utilisateur3 = insertUtilisateur(null, "Pénélope", "Descamps", "1960-12-14", sexeFemme,
-				"penelope.descamps@mail.com", "0603010006", "75 Boulevard Arago", null, "penelope", passwordEncoder.encode("penelope"),
-				"2018-02-15", null, Marseille, null, droitsUtilisateur);
-		Utilisateur utilisateur4 = insertUtilisateur(null, "Lucas", "Renard", "1985-01-15", SexeHomme,
-				"lucas.renard@mail.com", "0602149845", "15 Allées de l'Europe", null, "lucas", passwordEncoder.encode("lucas"), "2018-02-15",
-				null, Bordeaux, null, droitsUtilisateur);
-		Utilisateur utilisateur5 = insertUtilisateur(null, "Corinne", "Marques", "1984-02-14", sexeFemme,
-				"corinne.marques@mail.com", "0602149848", "13 Rue de la Courneuve", null, "corinne", passwordEncoder.encode("corinne"),
-				"2018-02-15", null, Paris1, null, droitsUtilisateur);
-		Utilisateur utilisateur6 = insertUtilisateur(null, "Ralph", "Montjoie", "1975-08-10", SexeHomme,
-				"ralph.montjoie@mail.com", "0602149852", "29 Rue de Champagne", null, "ralph", passwordEncoder.encode("ralph"), "2018-02-15",
-				null, Paris3, null, droitsUtilisateur);
-		Utilisateur utilisateur7 = insertUtilisateur(null, "Danielle", "Langlois", "1990-03-03", sexeFemme,
-				"danielle.langlois@mail.com", "0602149854", "Rue de l'Asile Popincourt", null, "danielle", passwordEncoder.encode("danielle"),
-				"2018-02-15", null, Paris17, null, droitsUtilisateur);
-		Utilisateur utilisateur8 = insertUtilisateur(null, "Claire", "Poissonnier", "1998-05-05", sexeFemme,
-				"claire.poissonnier@mail.com", "0603010040", "6 rue la Fayette", null, "claire", passwordEncoder.encode("claire"), "2018-02-15",
-				null, Paris12, null, droitsUtilisateur);
-		Utilisateur utilisateur9 = insertUtilisateur(null, "Charles", "Godin", "1994-06-08", SexeHomme,
-				"charles.godin@mail.com", "0603010044", "29 rue Pierre Nicole", null, "charles", passwordEncoder.encode("charles"), "2018-02-15",
-				null, Rennes, null, droitsUtilisateur);
-		Utilisateur utilisateur10 = insertUtilisateur(null, "Annie", "Bonnet", "1970-12-14", sexeFemme,
-				"annie.bonnet@mail.com", "0603010048", "16 rue de Verdun", null, "annie", passwordEncoder.encode("annie"), "2018-02-15", null,
-				Paris20, null, droitsUtilisateur);
 
-		
-		//abonnement
+		Utilisateur utilisateur3 = insertUtilisateur(null, "Pénélope", "Descamps", "1960-12-14", sexeFemme,
+				"penelope.descamps@mail.com", "0603010006", "75 Boulevard Arago", null, "penelope",
+				passwordEncoder.encode("penelope"), "2018-02-15", null, Marseille, null, droitsUtilisateur);
+		Utilisateur utilisateur4 = insertUtilisateur(null, "Lucas", "Renard", "1985-01-15", SexeHomme,
+				"lucas.renard@mail.com", "0602149845", "15 Allées de l'Europe", null, "lucas",
+				passwordEncoder.encode("lucas"), "2018-02-15", null, Bordeaux, null, droitsUtilisateur);
+		Utilisateur utilisateur5 = insertUtilisateur(null, "Corinne", "Marques", "1984-02-14", sexeFemme,
+				"corinne.marques@mail.com", "0602149848", "13 Rue de la Courneuve", null, "corinne",
+				passwordEncoder.encode("corinne"), "2018-02-15", null, Paris1, null, droitsUtilisateur);
+		Utilisateur utilisateur6 = insertUtilisateur(null, "Ralph", "Montjoie", "1975-08-10", SexeHomme,
+				"ralph.montjoie@mail.com", "0602149852", "29 Rue de Champagne", null, "ralph",
+				passwordEncoder.encode("ralph"), "2018-02-15", null, Paris3, null, droitsUtilisateur);
+		Utilisateur utilisateur7 = insertUtilisateur(null, "Danielle", "Langlois", "1990-03-03", sexeFemme,
+				"danielle.langlois@mail.com", "0602149854", "Rue de l'Asile Popincourt", null, "danielle",
+				passwordEncoder.encode("danielle"), "2018-02-15", null, Paris17, null, droitsUtilisateur);
+		Utilisateur utilisateur8 = insertUtilisateur(null, "Claire", "Poissonnier", "1998-05-05", sexeFemme,
+				"claire.poissonnier@mail.com", "0603010040", "6 rue la Fayette", null, "claire",
+				passwordEncoder.encode("claire"), "2018-02-15", null, Paris12, null, droitsUtilisateur);
+		Utilisateur utilisateur9 = insertUtilisateur(null, "Charles", "Godin", "1994-06-08", SexeHomme,
+				"charles.godin@mail.com", "0603010044", "29 rue Pierre Nicole", null, "charles",
+				passwordEncoder.encode("charles"), "2018-02-15", null, Rennes, null, droitsUtilisateur);
+		Utilisateur utilisateur10 = insertUtilisateur(null, "Annie", "Bonnet", "1970-12-14", sexeFemme,
+				"annie.bonnet@mail.com", "0603010048", "16 rue de Verdun", null, "annie",
+				passwordEncoder.encode("annie"), "2018-02-15", null, Paris20, null, droitsUtilisateur);
+
+		// abonnement
 		Abonnement abonnement1 = insertAbonnement(null, "2018-03-03", null, utilisateur1, utilisateur4);
 		Abonnement abonnement2 = insertAbonnement(null, "2018-03-03", null, utilisateur4, utilisateur1);
 		Abonnement abonnement3 = insertAbonnement(null, "2018-03-03", null, utilisateur2, utilisateur3);
@@ -161,9 +161,7 @@ public class InitDataSet {
 		Abonnement abonnement5 = insertAbonnement(null, "2018-03-03", null, utilisateur3, utilisateur4);
 		Abonnement abonnement6 = insertAbonnement(null, "2018-03-03", null, utilisateur4, utilisateur2);
 		Abonnement abonnement7 = insertAbonnement(null, "2018-03-03", null, utilisateur5, utilisateur3);
-		
-		
-		
+
 		// création theme
 		insertTheme(null, "Musique", "Musique");
 		insertTheme(null, "Peinture", "Peinture");
@@ -174,12 +172,15 @@ public class InitDataSet {
 		insertTheme(null, "Théatre", "Théatre");
 
 		// publication
-		insertPublication(null, "Joconde", "Portrait de Mona Lisa de l'artiste Léonard de Vinci ", "2020-06-12", utilisateur1);
+		insertPublication(null, "Joconde", "Portrait de Mona Lisa de l'artiste Léonard de Vinci ", "2020-06-12",
+				utilisateur1);
 		addThemePub(1, 2);
 		insertSupport(null, "Image", "Joconde.jpg");
 		addSupportPub(1, 1);
-		
-		insertPublication(null, "Le Radeau de La Méduse", "Le Radeau de La Méduse est une peinture à l'huile sur toile, réalisée entre 1818 et 1819 par le peintre et lithographe romantique français Théodore Géricault","2021-01-15", utilisateur1);
+
+		insertPublication(null, "Le Radeau de La Méduse",
+				"Le Radeau de La Méduse est une peinture à l'huile sur toile, réalisée entre 1818 et 1819 par le peintre et lithographe romantique français Théodore Géricault",
+				"2021-01-15", utilisateur1);
 		addThemePub(2, 2);
 		insertSupport(null, "Image", "radeau-meduse.jpg");
 		addSupportPub(2, 2);
@@ -215,7 +216,7 @@ public class InitDataSet {
 				"A cause de son nez, Cyrano n'ose songer à séduire Roxane. Mais puisqu'elle aime Christian, pourquoi ne pas tenter une expérience ?",
 				"2019-06-04", utilisateur4);
 		addThemePub(7, 7);
-		
+
 		insertPublication(null, "Les Nénufars",
 				"Cette peinture est une séquence d’environ 250 peintures à l’huile. La toile a été réalisée par le très populaire impressionniste Claude Monet",
 				"2020-05-04", utilisateur4);
@@ -228,35 +229,80 @@ public class InitDataSet {
 				utilisateur4);
 		addThemePub(9, 1);
 		insertSupport(null, "Image", "Revolver.jpg");
-		addSupportPub(9, 8); 
-		
-		//rajout support cyrano sur la publication cyrano
+		addSupportPub(9, 8);
+
+		// rajout support cyrano sur la publication cyrano
 		insertSupport(null, "Image", "cyrano.jpg");
-		addSupportPub(7, 9); 
-		
+		addSupportPub(7, 9);
+
 		insertPublication(null, "Ludwig van Beethoven",
-				"L’année 1802 marque un premier grand tournant dans la vie du compositeur. Souffrant d'acouphènes, il commence en effet depuis 1796 à prendre conscience d’une surdité qui devait irrémédiablement progresser jusqu’à devenir totale avant 1820.", "2020-07-26",
-				utilisateur1);
+				"L’année 1802 marque un premier grand tournant dans la vie du compositeur. Souffrant d'acouphènes, il commence en effet depuis 1796 à prendre conscience d’une surdité qui devait irrémédiablement progresser jusqu’à devenir totale avant 1820.",
+				"2020-07-26", utilisateur1);
 		addThemePub(10, 1);
 		insertSupport(null, "Image", "beethoven.jpg");
 		addSupportPub(10, 10);
 
+		insertPublication(null, "Mozart",
+				"Wolfgang Amadeus Mozart est un compositeur autrichien classique né à Salzbourg le 27 janvier 1756 et mort à Vienne le 5 décembre 1791",
+				"1998-05-22", utilisateur3);
+		addThemePub(11, 1);
+
+		insertPublication(null, "The Rolling Stones",
+				"The Rolling Stones est un groupe britannique de rock originaire de Londres, en Angleterre. Il est formé en 1962 par le guitariste et leader original Brian Jones, le pianiste Ian Stewart, le chanteur Mick Jagger et le guitariste Keith Richards.",
+				"2005-01-17", utilisateur3);
+		addThemePub(12, 1);
+
+		insertPublication(null, "Harrison Ford",
+				"Harrison Ford est un acteur américain, né le 13 juillet 1942 à Chicago. Sa collaboration avec George Lucas, le premier qui lui a donné l'occasion de s'affirmer en tant qu'acteur avec American Graffiti.",
+				"2012-05-20", utilisateur2);
+		addThemePub(13, 6);
+
+		insertPublication(null, "L'Avare",
+				"L'Avare est une comédie de Molière en cinq actes et en prose, adaptée de La Marmite de Plaute et représentée pour la première fois sur la scène du Palais-Royal le 9 septembre 1668",
+				"2020-05-25", utilisateur5);
+		addThemePub(14, 7);
+
+		insertPublication(null, "Le Lac des cygnes",
+				"Le Lac des cygnes est un ballet en quatre actes sur une musique de Piotr Ilitch Tchaïkovski et un livret de Vladimir Begitchev inspiré d'une légende allemande.",
+				"2021-02-13", utilisateur5);
+		addThemePub(15, 4);
 
 		// annonce
-		insertAnnonce(null, "Recherche modeles", "Recherche model pour réaliser des portraits en peinture", 15.0,
+		insertAnnonce(null, "Recherche modeles", 
+				"Recherche model pour réaliser des portraits en peinture", 15.0,
 				"2020-06-07", utilisateur4);
 		addThemeAnnonce(1, 2);
 		addSupportAnnonce(1, 1);
 
-		insertAnnonce(null, "Fugurants", "Je recherche des figurants pour cours métrages, sur l’époque de Napoléon. ",
+		insertAnnonce(null, "Fugurants", 
+				"Je recherche des figurants pour cours métrages, sur l’époque de Napoléon. ",
 				0.0, "2019-06-04", utilisateur5);
 		addThemeAnnonce(2, 6);
 		addSupportAnnonce(1, 2);
-		
-		insertAnnonce(null, "Appareil photo anciens", "Je recherche d’ancien appareil photo argentique ", 0.0,
+
+		insertAnnonce(null, "Appareil photo anciens", 
+				"Je recherche d’ancien appareil photo argentique ", 0.0,
 				"2021-02-15", utilisateur5);
 		addThemeAnnonce(3, 6);
 		addSupportAnnonce(1, 3);
+
+		insertAnnonce(null, "Cour de piano", 
+				"Je vous propose des cours de piano pour débutant", 15.0, "1998-05-22",
+				utilisateur3);
+		addThemeAnnonce(4, 1);
+		
+		insertAnnonce(null, "Cours de danse", "Je vous propose des cours de danse JAZZ", 12.0, "2020-09-15",
+				utilisateur5);
+		addThemeAnnonce(5, 4);
+		
+		insertAnnonce(null, "chorale", "chorale recherche personne pour cahnter avec nous", 0.0, "2021-03-02",
+				utilisateur2);
+		addThemeAnnonce(6, 1);
+		
+		insertAnnonce(null, "Matériel de cinéma", "Je vends de vieux projecteur de cinéma", 0.0, "2019-06-22",
+				utilisateur1);
+		addThemeAnnonce(7, 6);
+
 	}
 
 	private Ville insertVille(Long id, String codePostal, String localite, String pays) {
@@ -270,20 +316,21 @@ public class InitDataSet {
 
 	private void insertSupport(Long id, String typeSupport, String chemin) {
 		Support support = new Support();
-		support.setId(id); 
+		support.setId(id);
 		support.setTypeSupport(typeSupport);
 		support.setChemin(chemin);
 		supportRepository.save(support);
 	}
 
-	private void insertPublication(Long id, String titre, String texte, String dateDeDebut, Utilisateur utilisateur) throws ParseException {
+	private void insertPublication(Long id, String titre, String texte, String dateDeDebut, Utilisateur utilisateur)
+			throws ParseException {
 		Publication publication = new Publication();
 		publication.setId(id);
 		publication.setTexte(texte);
 		publication.setTitre(titre);
-		if(dateDeDebut != null) {
-		publication.setDateDebut(new SimpleDateFormat("yyyy-MM-dd").parse(dateDeDebut));
-		}else {
+		if (dateDeDebut != null) {
+			publication.setDateDebut(new SimpleDateFormat("yyyy-MM-dd").parse(dateDeDebut));
+		} else {
 			publication.setDateDebut(null);
 		}
 		publication.setUtilisateur(utilisateur);
@@ -327,19 +374,19 @@ public class InitDataSet {
 	}
 
 	private Utilisateur insertUtilisateur(Long id, String prenom, String nom, String dateDeNaissance, Sexe sexe,
-			String mail, String telephone, String rue, String complement, String profile, String mdp, String dateInscription,
-			String dateResiliation, Ville ville, MotifResiliation motifResiliation, Droits droits) throws ParseException {
+			String mail, String telephone, String rue, String complement, String profile, String mdp,
+			String dateInscription, String dateResiliation, Ville ville, MotifResiliation motifResiliation,
+			Droits droits) throws ParseException {
 		Utilisateur utilisateur = new Utilisateur();
 		utilisateur.setId(id);
 		utilisateur.setNom(nom);
 		utilisateur.setPrenom(prenom);
 		if (dateDeNaissance != null) {
 			utilisateur.setDateNais(new SimpleDateFormat("yyyy-MM-dd").parse(dateDeNaissance));
-		}
-		else {
+		} else {
 			utilisateur.setDateNais(null);
 		}
-		
+
 		utilisateur.setSexe(sexe);
 		utilisateur.setMail(mail);
 		utilisateur.setRue(rue);
@@ -348,13 +395,13 @@ public class InitDataSet {
 		utilisateur.setProfile(profile);
 		utilisateur.setPasseWord(mdp);
 		if (dateInscription != null) {
-		utilisateur.setDateInscription(new SimpleDateFormat("yyyy-MM-dd").parse(dateInscription));
-		}else {
+			utilisateur.setDateInscription(new SimpleDateFormat("yyyy-MM-dd").parse(dateInscription));
+		} else {
 			utilisateur.setDateNais(null);
 		}
-		if(dateResiliation != null) {
-		utilisateur.setDateResiliation(new SimpleDateFormat("yyyy-MM-dd").parse(dateResiliation));
-		}else {
+		if (dateResiliation != null) {
+			utilisateur.setDateResiliation(new SimpleDateFormat("yyyy-MM-dd").parse(dateResiliation));
+		} else {
 			utilisateur.setDateResiliation(null);
 		}
 		utilisateur.setVille(ville);
@@ -368,14 +415,14 @@ public class InitDataSet {
 			Utilisateur follower) throws ParseException {
 		Abonnement abo = new Abonnement();
 		abo.setId(id);
-		if(dateDeDebut != null) {
-		abo.setDateDébut(new SimpleDateFormat("yyyy-MM-dd").parse(dateDeDebut));
-		}else {
+		if (dateDeDebut != null) {
+			abo.setDateDébut(new SimpleDateFormat("yyyy-MM-dd").parse(dateDeDebut));
+		} else {
 			abo.setDateDébut(null);
 		}
-		if(dateDeFin != null) {
-		abo.setDateFin(new SimpleDateFormat("yyyy-MM-dd").parse(dateDeFin));
-		}else {
+		if (dateDeFin != null) {
+			abo.setDateFin(new SimpleDateFormat("yyyy-MM-dd").parse(dateDeFin));
+		} else {
 			abo.setDateFin(null);
 		}
 		abo.setFollowing(following);
@@ -397,9 +444,9 @@ public class InitDataSet {
 		annonce.setTexte(texte);
 		annonce.setTitre(titre);
 		annonce.setPrix(prix);
-		if(dateParution != null) {
-		annonce.setDateParution(new SimpleDateFormat("yyyy-MM-dd").parse(dateParution));
-		}else {
+		if (dateParution != null) {
+			annonce.setDateParution(new SimpleDateFormat("yyyy-MM-dd").parse(dateParution));
+		} else {
 			annonce.setDateParution(null);
 		}
 		annonce.setUtilisateur(utilisateur);

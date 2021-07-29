@@ -1,0 +1,36 @@
+<!--dash.component.html-->
+<div class="grid-container">
+  <ngx-spinner>
+    <p class="spinner"></p>
+  </ngx-spinner>
+  <h1 class="mat-h1">Salut Admin , voila l'aperçu général !</h1>
+  <mat-grid-list cols="{{ ( cardLayout | async )?.columns }}" rowHeight="200px">
+    <!--Mini Cards-->
+    <mat-grid-tile *ngFor="let mc of miniCardData" [colspan]="( cardLayout | async )?.miniCard.cols"
+                   [rowspan]="( cardLayout | async )?.miniCard.rows">
+      <app-mini-card [icon]="mc.icon" [title]="mc.title" [value]=mc.value [color]="mc.color" [isIncrease]="mc.isIncrease" duration="since last month" [percentValue]=mc.percentValue [isCurrency]="mc. isCurrency"></app-mini-card>
+    </mat-grid-tile>
+    <!--Charts-->
+    <!--Charts-->
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart.cols" [rowspan]="( cardLayout | async )?.chart.rows">
+      <app-card title="Les prix d'oeuvres">
+        <app-annual-sales-chart></app-annual-sales-chart>
+      </app-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart.cols" [rowspan]="( cardLayout | async )?.chart.rows">
+      <app-card title="Les publications qui ont fait de succées">
+        <app-product-sales-chart></app-product-sales-chart>
+      </app-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart.cols" [rowspan]="( cardLayout | async )?.chart.rows">
+      <app-card title="Les signalement effectuer">
+        <app-sales-traffic-chart></app-sales-traffic-chart>
+      </app-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="( cardLayout | async )?.chart.cols" [rowspan]="( cardLayout | async )?.chart.rows">
+      <app-card title="Les utilisateurs qui ont plus des abonnées">
+        <app-store-sessions-chart></app-store-sessions-chart>
+      </app-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

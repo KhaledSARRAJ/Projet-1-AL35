@@ -1,0 +1,52 @@
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" class="full-width-table" matSort aria-label="Elements">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let element">{{element.id}}</td>
+    </ng-container>
+
+    <!-- Titre Column -->
+    <ng-container matColumnDef="titre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Titre</th>
+      <td mat-cell *matCellDef="let element">{{element.titre}}</td>
+    </ng-container>
+    <!-- Titre Column -->
+    <ng-container matColumnDef="texte">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Texte</th>
+      <td mat-cell *matCellDef="let element">{{element.texte}}</td>
+    </ng-container>
+    <!-- Titre Column -->
+    <ng-container matColumnDef="prix">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Prix</th>
+      <td mat-cell *matCellDef="let element">{{element.prix}}</td>
+    </ng-container>
+    <!-- Titre Column -->
+    <ng-container matColumnDef="dateParution">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Date Apparition</th>
+      <td mat-cell *matCellDef="let element">{{element.dateParution}}</td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="deleteAnnonce(element.id, element)" color="warn"
+                title="supprimer cette publication">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator
+      [length]="dataSource?.data?.length"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      aria-label="Select page">
+  </mat-paginator>
+</div>

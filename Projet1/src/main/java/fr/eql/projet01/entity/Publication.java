@@ -55,6 +55,11 @@ public class Publication implements Serializable{
 	@JoinColumn(referencedColumnName = "id")
 	private Utilisateur utilisateur;	
 	
+	public void detachWithTheme() {
+		for(Theme t : this.theme) {
+			t.getListPublicationTheme().remove(this);
+		}
+	}
 	public Publication(String titre, String texte) {
 		super();
 		this.titre = titre;

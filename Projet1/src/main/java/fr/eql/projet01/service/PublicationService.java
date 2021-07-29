@@ -8,6 +8,9 @@ import org.springframework.data.domain.Pageable;
 
 import fr.eql.projet01.entity.Publication;
 import fr.eql.projet01.entity.Utilisateur;
+import fr.eql.projet01.exception.AecServiceException;
+import fr.eql.projet01.exception.NotValidObjectException;
+import fr.eql.projet01.exception.ResourceNotFoundException;
 
 public interface PublicationService {
 
@@ -27,5 +30,13 @@ public interface PublicationService {
 
 //	List<Publication> findBySupport  DetailsList(String name);
 	public Page<Publication> findByUtilisateurAndTitreIgnoreCaseContains(Utilisateur utilisateur, String titre, Pageable pageable);
+	
+	List<Publication> search(Long userId) throws ResourceNotFoundException;
+	
+	Publication findOne(Long id) throws ResourceNotFoundException;
+	
+	Publication save (Publication publication) throws NotValidObjectException, ResourceNotFoundException;
+	
+	void delete (Long id) throws AecServiceException;
 
 }

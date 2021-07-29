@@ -13,7 +13,6 @@ import lombok.ToString;
 
 @Getter @Setter @ToString @NoArgsConstructor
 public class PublicationResponse {
-
 	private Long id;
 	private String titre;
 	private String texte;

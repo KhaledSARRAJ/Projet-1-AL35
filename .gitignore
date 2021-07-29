@@ -1,13 +1,88 @@
-#
-# Project specific excludes
-#
 
-#
-# Default excludes
-#
+Skip to content
+Pull requests
+Issues
+Marketplace
+Explore
+@WonderST
+khaledSARRAJ /
+Projet-1-AL35
 
-*/node_modules
-**/node_modules
+1
+0
+
+    0
+
+Code
+Issues
+Pull requests 1
+Actions
+Projects
+Wiki
+Security
+
+    Insights
+
+Projet-1-AL35/.gitignore
+@khaledSARRAJ
+khaledSARRAJ last version
+Latest commit ef574f4 9 minutes ago
+History
+2 contributors
+@khaledSARRAJ
+@davidbatisson
+80 lines (68 sloc) 904 Bytes
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+/dist
+/tmp
+/out-tsc
+# Only exists if Bazel was run
+/bazel-out
+
+# dependencies
+/node_modules
+
+# profiling files
+chrome-profiler-events*.json
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+/catalina.policy
+/web.xml
+/tomcat-users.xml
+/server.xml
+/context.xml
+/catalina.properties
+
+# System Files
+.DS_Store
+Thumbs.db
 
 # Binaries
 *.7z
@@ -27,12 +102,9 @@
 
 # Maven 
 target/
+# Maven 
+target/
 
-# IntelliJ project files 
-*.iml
-*.iws
-*.ipr
-.idea/
 
 # eclipse project file
 .settings/
@@ -40,18 +112,18 @@ target/
 .project
 .target
 
-# OS
-.DS_Store
+    © 2021 GitHub, Inc.
+    Terms
+    Privacy
+    Security
+    Status
+    Docs
 
-# Misc
-*.swp
-release.properties
-pom.xml.releaseBackup
-pom.xml.tag
+    Contact GitHub
+    Pricing
+    API
+    Training
+    Blog
+    About
 
-/catalina.policy
-/web.xml
-/tomcat-users.xml
-/server.xml
-/context.xml
-/catalina.properties
+Loading complete

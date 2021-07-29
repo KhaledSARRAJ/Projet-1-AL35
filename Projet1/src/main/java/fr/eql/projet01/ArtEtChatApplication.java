@@ -10,7 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 public class ArtEtChatApplication extends SpringBootServletInitializer{
 	public static void main(String[] args) {
 		SpringApplication app = new SpringApplication(ArtEtChatApplication.class);
-		app.setAdditionalProfiles("initData");
+		//app.setAdditionalProfiles("initData");
 		app.run(args);
 	}
 }

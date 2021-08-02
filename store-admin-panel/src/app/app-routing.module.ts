@@ -6,12 +6,14 @@ import {UtilisateurTableComponent} from "./utilisateur-table/utilisateur-table.c
 import {SignalementTableComponent} from "./signalement-table/signalement-table.component";
 import {AnnonceTableComponent} from "./annonce-table/annonce-table.component";
 import {AcceuilComponent} from "./acceuil/acceuil.component";
+import { PublicationsDetailsComponent } from './publication-table/publications-details/publications-details.component';
 
 const routes: Routes = [{path: 'Synthèse', component: DashComponent},
   {path: 'Publication', component: PublicationTableComponent},
   {path: 'Utilisateur', component: UtilisateurTableComponent},
   {path: 'Signalement', component: SignalementTableComponent},
   {path: 'Annonce', component: AnnonceTableComponent},
+  {path: 'publication-details', component: PublicationsDetailsComponent},
   {path: '', component: AcceuilComponent}
 ];
 

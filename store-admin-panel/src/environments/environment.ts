@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  apiUrlusers : 'http://localhost:8085/administrateur/publications'
+  apiUrlusers : 'ec2-3-140-192-195.us-east-2.compute.amazonaws.com:8085/administrateur/publications',
+  serviceUrl : 'ec2-3-140-192-195.us-east-2.compute.amazonaws.com:8085/administrateur/',
+  signalementUrl :  'http://18.224.51.251:8080/aec-api-rest/signalements/',
+  annoncesUrl : 'ec2-3-140-192-195.us-east-2.compute.amazonaws.com:8085/administrateur/annonces'
+
 };
 
 /*

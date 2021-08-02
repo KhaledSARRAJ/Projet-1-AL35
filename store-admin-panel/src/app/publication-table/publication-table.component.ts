@@ -7,6 +7,7 @@ import {DataserviceService} from "../../services/publications/dataservice.servic
 import {UtilsServiceService} from "../../services/utils/utils-service.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Utilisateur} from "../../models/utilisateur/utilisateur";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-publication-table',
@@ -23,6 +24,7 @@ export class PublicationTableComponent implements OnInit, AfterViewInit {
   displayedColumns = ['id', 'titre', 'nbSignalement', 'dateDebut', 'action'];
 
   constructor(private ds: DataserviceService,
+              private router: Router,
               private utilsService: UtilsServiceService) {
   }
 
@@ -43,7 +45,10 @@ export class PublicationTableComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
   }
-
+  publicationDetails(id) {
+    this.router.navigateByUrl(`/publication-details`);
+    this.ds.idPublicationDetails = id;
+  }
   publicationsDelete(id, row: any) {
     this.utilsService.showSpinner();
     const index = this.dataSource.data.indexOf(row, 0);

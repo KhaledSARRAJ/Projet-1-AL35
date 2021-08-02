@@ -32,6 +32,8 @@ import {SignalementTableComponent} from './signalement-table/signalement-table.c
 import {AnnonceTableComponent} from './annonce-table/annonce-table.component';
 import {AcceuilComponent} from './acceuil/acceuil.component';
 import {NgxSpinnerModule} from "ngx-spinner";
+import { PublicationsDetailsComponent } from './publication-table/publications-details/publications-details.component';
+import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import {NgxSpinnerModule} from "ngx-spinner";
     UtilisateurTableComponent,
     SignalementTableComponent,
     AnnonceTableComponent,
-    AcceuilComponent
+    AcceuilComponent,
+    PublicationsDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,9 @@ import {NgxSpinnerModule} from "ngx-spinner";
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

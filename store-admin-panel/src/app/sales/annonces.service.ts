@@ -4,13 +4,14 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Annonces} from './Annonces'
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class AnnoncesService {
-  private annoncesUrl = 'http://localhost:8085/administrateur/annonces';
+  private annoncesUrl = environment.annoncesUrl;
 
   constructor(private http: HttpClient) { }
 

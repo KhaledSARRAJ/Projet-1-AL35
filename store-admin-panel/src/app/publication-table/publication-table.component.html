@@ -28,6 +28,9 @@
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
+        <button mat-icon-button (click)="publicationDetails(element.id)" color="accent" title="Voir les détails">
+          <mat-icon>details</mat-icon>
+        </button>
         <button mat-icon-button (click)="publicationsDelete(element.id, element)" color="warn"
                 title="supprimer cette publication">
           <mat-icon>delete</mat-icon>
